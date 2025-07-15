@@ -12,8 +12,8 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-public class HomePageController {
-    @GetMapping("/home")
+public class ScheduleController {
+    @GetMapping("/schedule")
     public ResponseEntity<?> checkSession(HttpSession session){
         MemberInfo loginMember=(MemberInfo) session.getAttribute("loginMember");
 

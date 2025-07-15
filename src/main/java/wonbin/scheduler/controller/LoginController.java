@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Repository.MemoryRepository;
 import wonbin.scheduler.Repository.Repository;
-import wonbin.scheduler.member.MemberInfo;
+import wonbin.scheduler.Entity.member.MemberInfo;
 
 @RestController
 @Slf4j

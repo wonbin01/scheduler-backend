@@ -1,4 +1,4 @@
-package wonbin.scheduler.member;
+package wonbin.scheduler.Entity.member;
 
 import lombok.Data;
 

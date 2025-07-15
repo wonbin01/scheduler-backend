@@ -1,6 +1,6 @@
 package wonbin.scheduler.Repository;
 
-import wonbin.scheduler.member.MemberInfo;
+import wonbin.scheduler.Entity.member.MemberInfo;
 
 import java.util.HashMap;
 

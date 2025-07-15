@@ -1,6 +1,6 @@
 package wonbin.scheduler.Repository;
 
-import wonbin.scheduler.member.MemberInfo;
+import wonbin.scheduler.Entity.member.MemberInfo;
 
 @org.springframework.stereotype.Repository
 public interface Repository {
