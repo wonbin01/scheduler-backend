@@ -24,7 +24,7 @@ public class WebConfig  implements WebMvcConfigurer {
     }
 
     @Component
-    @WebFilter(urlPatterns = "/session/*")
+    @WebFilter(urlPatterns = "/*")
     @Slf4j
     public static class LoginCheckFilter implements Filter {
         public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

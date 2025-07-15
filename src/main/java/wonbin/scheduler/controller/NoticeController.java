@@ -13,7 +13,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 public class NoticeController {
-    @GetMapping("/session/notice")
+    @GetMapping("/notice")
     public ResponseEntity<?> checkSession(HttpSession session){
         MemberInfo loginMember=(MemberInfo) session.getAttribute("loginMember");
 
