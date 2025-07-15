@@ -19,27 +19,16 @@ public class NoticeController {
     CategoryRepository repository=new MemoryCategoryRepository();
 
     @GetMapping
-    public ResponseEntity<?> checkSession(HttpSession session) {
-        MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
-
-        if (loginMember != null) {
-            log.info("Session 확인, memberId={}", loginMember.getUsername());
-
-            // repository에서 카테고리 목록 가져오기
-            List<String> categories = repository.find_all_category();
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("categories", categories);
-            return ResponseEntity.ok(response);
-        } else {
-            log.info("Session 확인 실패, 로그인 페이지로 이동");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 필요");
-        }
+    public ResponseEntity<?> checkSession() {
+        // repository에서 카테고리 목록 가져오기
+        List<String> categories = repository.find_all_category();
+        Map<String, Object> response = new HashMap<>();
+        response.put("categories", categories);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/category")
-    public ResponseEntity<?> addcategory(@RequestBody Map<String,String> body,HttpSession session){
-        MemberInfo loginMember=(MemberInfo) session.getAttribute("loginMember");
+    public ResponseEntity<?> addcategory(@RequestBody Map<String,String> body){
         String newcategory=body.get("name");
         List<String> all_category=repository.find_all_category();
         if(all_category.contains(newcategory.trim())){

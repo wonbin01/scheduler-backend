@@ -14,19 +14,11 @@ import java.util.Map;
 @RestController
 public class HomePageController {
     @GetMapping("/home")
-    public ResponseEntity<?> checkSession(HttpSession session){
-        MemberInfo loginMember=(MemberInfo) session.getAttribute("loginMember");
-
-        if(loginMember!=null){
-            log.info("Session 확인, memberId={}",loginMember.getUsername());
-            return ResponseEntity.ok(Map.of(
-                    "id", loginMember.getUsername()
-            ));
-        }
-        else
-        {
-            log.info("Session 확인 실패, 로그인 페이지로 이동");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 필요");
-        }
+    public ResponseEntity<?> checkSession(HttpSession session) {
+        MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
+        return ResponseEntity.ok(Map.of(
+                "id", loginMember.getUsername()
+        ));
     }
 }
+
