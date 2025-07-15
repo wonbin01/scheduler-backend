@@ -7,14 +7,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import wonbin.scheduler.Repository.MemoryRepository;
-import wonbin.scheduler.Repository.Repository;
+import wonbin.scheduler.Repository.Member.MemoryRepository;
+import wonbin.scheduler.Repository.Member.Repository;
 import wonbin.scheduler.Entity.member.MemberInfo;
 
 @RestController
 @Slf4j
 public class LoginController {
+
     Repository repository=new MemoryRepository(); //지금은 일단 메모리에 저장
+
     @PostMapping("/signup") //회원가입
     public ResponseEntity<String> participation(@RequestBody MemberInfo info) {
         log.info("회원가입");

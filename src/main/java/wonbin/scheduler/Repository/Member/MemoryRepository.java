@@ -1,4 +1,4 @@
-package wonbin.scheduler.Repository;
+package wonbin.scheduler.Repository.Member;
 
 import wonbin.scheduler.Entity.member.MemberInfo;
 
