@@ -7,6 +7,7 @@ import wonbin.scheduler.Entity.Post.PostInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Getter
@@ -30,7 +31,21 @@ public class MemoryPostRepository implements PostRepository{
     }
 
     @Override
-    public List<PostInfo> findAll() {
-        return posts;
+    public Optional<PostInfo> findById(int id) {
+        for(PostInfo variable: posts){
+            if(variable.getId()==id){
+                return Optional.of(variable);
+            }
+        }
+        return Optional.empty();
     }
+
+    @Override
+    public boolean DeleteById(int id) {
+        Optional<PostInfo> found = findById(id);
+        if (found.isEmpty()) return false;
+        posts.remove(found.get());  // Optional 안의 실제 PostInfo 객체를 삭제해야 함
+        return true;
+    }
+
 }

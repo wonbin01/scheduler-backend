@@ -1,6 +1,7 @@
 package wonbin.scheduler.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Post.PostInfo;
@@ -58,4 +59,26 @@ public class NoticeController {
         log.info("post 성공! : {}",category);
         return savePost;
     }
+    @GetMapping("/{category}/{postId}")
+    public ResponseEntity<?>GetDetailedPost(@PathVariable String category,@PathVariable int postId){
+        Optional<PostInfo> optionalPost=postRepository.findById(postId);
+        if(optionalPost.isEmpty()){
+            log.info("해당 postId를 찾을 수 없습니다 : {}",postId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 게시글이 존재하지 않습니다");
+        }
+        PostInfo post=optionalPost.get();
+        return ResponseEntity.ok(post);
+    }
+
+    @DeleteMapping("/{category}/{postId}")
+    public ResponseEntity<?> deletePost(@PathVariable String category, @PathVariable int postId){
+        boolean deleted = postRepository.DeleteById(postId);
+        if (!deleted) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 게시글이 없습니다.");
+        }
+        log.info("삭제 성공 ID : {}",postId);
+        return ResponseEntity.ok(String.format("삭제 성공 ID=%d", postId));
+    }
+
+
 }

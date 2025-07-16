@@ -1,10 +1,9 @@
 package wonbin.scheduler.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Repository.Member.MemoryRepository;
@@ -28,35 +27,9 @@ public class LoginController {
         return ResponseEntity.ok("회원가입 성공");
     }
 
-    //@PostMapping("/login")
-    public ResponseEntity<String> loginV1(@RequestBody MemberInfo info)
-    {
-        log.info("로그인");
-        int private_num=info.getUsername();
-        String private_password=info.getPassword();
-        log.info("MemberId={} , PassWord={}",private_num,private_password);
-        MemberInfo check=repository.findById(private_num);
-
-        if(check==null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("존재하지 않는 아이디");
-
-        if(!check.getPassword().equals(private_password))
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("비밀번호가 틀렸습니다.");
-
-        log.info("로그인 성공: {}",private_num);
-
-        ResponseCookie cookie=ResponseCookie.from("loginToken",String.valueOf(private_num))
-                .httpOnly(true) //javascript에서 접근 x
-                .path("/") //전체 경로에 대해서 쿠키 유효
-                .maxAge(3600) //1시간만 유효한 쿠키
-                .build();
-
-        return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE,cookie.toString())
-                .body("로그인 성공");
-    }
     @PostMapping("/login")
         public ResponseEntity<String> loginV2(@RequestBody MemberInfo info, HttpSession session){
-            log.info("로그인 요청 V2: {}",info.getUsername());
+            log.info("로그인 요청 : {}",info.getUsername());
             int private_num=info.getUsername();
             String private_password=info.getPassword();
             log.info("MemberId={} , Password={}", private_num,private_password);
@@ -72,4 +45,13 @@ public class LoginController {
             session.setAttribute("loginMember",check);
             return ResponseEntity.ok("로그인 성공");
         }
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // 현재 세션 가져오기 (없으면 null 반환)
+        if (session != null) {
+            session.invalidate(); // 세션 무효화 → 로그아웃 처리
+        }
+        log.info("로그아웃");
+        return ResponseEntity.ok("로그아웃 완료");
+    }
 }
