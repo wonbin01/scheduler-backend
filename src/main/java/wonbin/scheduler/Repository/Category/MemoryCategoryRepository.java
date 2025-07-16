@@ -1,26 +1,30 @@
 package wonbin.scheduler.Repository.Category;
 
+import wonbin.scheduler.Entity.NoticeCategory.NoticeCategory;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MemoryCategoryRepository implements CategoryRepository{
-    HashMap<String, List<String>> hm=new HashMap<>();
+    private final Map<String, NoticeCategory> hm=new HashMap<>();
 
     public MemoryCategoryRepository() {
-        ArrayList<String> al = new ArrayList<>();
-        al.add("매점"); al.add("웰컴"); al.add("엔젤"); al.add("인사");
-        al.add("소방"); al.add("기타");
-        hm.put("categories", al); // 이것만 있어도 충분해
+        for(String name : List.of("매점","웰컴","엔젤","인사","소방","기타")){
+            hm.put(name,new NoticeCategory(name));
+        }
     }
 
     @Override
-    public void save_category(String newcategory) {
-        hm.get("categories").add(newcategory);
+    public void save_category(String newcategory){
+        if(!hm.containsKey(newcategory)){
+            hm.put(newcategory,new NoticeCategory(newcategory));
+        }
     }
 
     @Override
     public List<String> find_all_category() {
-        return hm.get("categories");
+        return new ArrayList<>(hm.keySet());
     }
 }
