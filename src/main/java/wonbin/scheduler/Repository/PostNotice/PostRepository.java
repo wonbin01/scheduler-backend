@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface PostRepository {
     public PostInfo save(String title,String content,String category);
     public List<PostInfo> findByCategory(String category);
-    public Optional<PostInfo> findById(int id);
-    public boolean DeleteById(int id);
+    public Optional<PostInfo> findById(Long id);
+    public boolean DeleteById(Long id);
+    public void update(PostInfo post);
 }
