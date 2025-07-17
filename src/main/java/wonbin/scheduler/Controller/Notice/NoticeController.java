@@ -50,7 +50,9 @@ public class NoticeController {
     @GetMapping("/{category}")
     public List<PostInfo> getPostByCategory(@PathVariable String category){
         log.info("category : {}",category);
-        return postRepository.findByCategory(category);
+        List<PostInfo> posts=postRepository.findByCategory(category);
+        posts.sort(Comparator.comparing(PostInfo::getId).reversed());
+        return posts;
     }
 
     @PostMapping("/{category}")
