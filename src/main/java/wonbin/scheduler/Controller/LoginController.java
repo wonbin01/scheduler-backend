@@ -1,4 +1,4 @@
-package wonbin.scheduler.controller;
+package wonbin.scheduler.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Repository.Member.MemoryRepository;
 import wonbin.scheduler.Repository.Member.Repository;
-import wonbin.scheduler.Entity.member.MemberInfo;
+import wonbin.scheduler.Entity.Member.MemberInfo;
 
 @RestController
 @Slf4j
@@ -19,9 +19,10 @@ public class LoginController {
     @PostMapping("/signup") //회원가입
     public ResponseEntity<String> participation(@RequestBody MemberInfo info) {
         log.info("회원가입");
-        int private_num=info.getUsername();
+        int private_num=info.getUsernumber();
         String private_password=info.getPassword();
-        log.info("MemberId={} , PassWord={}",private_num,private_password);
+        String private_name=info.getUsername();
+        log.info("MemberId={} ,MemberName={}, PassWord={}",private_num,private_name,private_password);
         //Todo - 지금은 메모리에 저장하지만, 나중에 DB연결까지 해야됨
         repository.save(info);
         return ResponseEntity.ok("회원가입 성공");
@@ -30,7 +31,7 @@ public class LoginController {
     @PostMapping("/login")
         public ResponseEntity<String> loginV2(@RequestBody MemberInfo info, HttpSession session){
             log.info("로그인 요청 : {}",info.getUsername());
-            int private_num=info.getUsername();
+            int private_num=info.getUsernumber();
             String private_password=info.getPassword();
             log.info("MemberId={} , Password={}", private_num,private_password);
 

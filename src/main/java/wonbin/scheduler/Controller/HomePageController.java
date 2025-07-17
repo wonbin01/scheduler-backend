@@ -1,12 +1,11 @@
-package wonbin.scheduler.controller;
+package wonbin.scheduler.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import wonbin.scheduler.Entity.member.MemberInfo;
+import wonbin.scheduler.Entity.Member.MemberInfo;
 
 import java.util.Map;
 
@@ -17,7 +16,8 @@ public class HomePageController {
     public ResponseEntity<?> checkSession(HttpSession session) {
         MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
         return ResponseEntity.ok(Map.of(
-                "id", loginMember.getUsername()
+                "id", loginMember.getUsernumber(),
+                "name", loginMember.getUsername()
         ));
     }
 }
