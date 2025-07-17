@@ -1,4 +1,4 @@
-package wonbin.scheduler.Controller;
+package wonbin.scheduler.Controller.Notice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

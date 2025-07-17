@@ -2,6 +2,7 @@ package wonbin.scheduler.Repository.Comment;
 
 import wonbin.scheduler.Entity.Comment.CommentInfo;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class MemoryCommentRepository implements CommentRepositoy {
@@ -43,5 +44,10 @@ public class MemoryCommentRepository implements CommentRepositoy {
             }
         }
         throw new IllegalArgumentException("수정할 댓글을 찾을 수 없습니다.");
+    }
+
+    @Override
+    public List<CommentInfo> findby_Id(Long id) {
+        return hm.getOrDefault(id, Collections.emptyList());
     }
 }
