@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.server.ResponseStatusException;
 import wonbin.scheduler.Entity.Post.PostInfo;
 import wonbin.scheduler.Repository.Category.CategoryRepository;
 import wonbin.scheduler.Repository.Category.MemoryCategoryRepository;
@@ -60,7 +62,7 @@ public class NoticeController {
         return savePost;
     }
     @GetMapping("/{category}/{postId}")
-    public ResponseEntity<?>GetDetailedPost(@PathVariable String category,@PathVariable int postId){
+    public ResponseEntity<?>GetDetailedPost(@PathVariable String category,@PathVariable Long postId){
         Optional<PostInfo> optionalPost=postRepository.findById(postId);
         if(optionalPost.isEmpty()){
             log.info("해당 postId를 찾을 수 없습니다 : {}",postId);
@@ -71,7 +73,7 @@ public class NoticeController {
     }
 
     @DeleteMapping("/{category}/{postId}")
-    public ResponseEntity<?> deletePost(@PathVariable String category, @PathVariable int postId){
+    public ResponseEntity<?> deletePost(@PathVariable String category, @PathVariable Long postId){
         boolean deleted = postRepository.DeleteById(postId);
         if (!deleted) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 게시글이 없습니다.");
@@ -79,6 +81,18 @@ public class NoticeController {
         log.info("삭제 성공 ID : {}",postId);
         return ResponseEntity.ok(String.format("삭제 성공 ID=%d", postId));
     }
-
+    @PutMapping("/{category}/{postId}")
+    public void updatePost(@PathVariable String category, @PathVariable Long postId, @RequestBody PostInfo update){
+        Optional<PostInfo> variable=postRepository.findById(postId); //postId를 통해서 객체 찾음
+        if(variable.isPresent()){
+            PostInfo post=variable.get();
+            post.setTitle(update.getTitle());
+            post.setContent(update.getContent());
+            postRepository.update(post);
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"게시글을 찾을 수 없습니다.");
+        }
+    }
 
 }
