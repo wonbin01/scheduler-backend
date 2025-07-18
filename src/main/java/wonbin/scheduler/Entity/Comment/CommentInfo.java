@@ -12,6 +12,7 @@ public class CommentInfo {
     private int userId;
     private String comment_content;
     private Long postedId;
+    private boolean updated=false;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
