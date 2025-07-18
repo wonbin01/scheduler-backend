@@ -1,10 +1,12 @@
 package wonbin.scheduler.Controller.Notice;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Post.PostInfo;
 import wonbin.scheduler.Repository.Category.CategoryRepository;
 import wonbin.scheduler.Repository.Category.MemoryCategoryRepository;
@@ -63,14 +65,21 @@ public class NoticeController {
         return savePost;
     }
     @GetMapping("/{category}/{postId}")
-    public ResponseEntity<?>GetDetailedPost(@PathVariable String category,@PathVariable Long postId){
-        Optional<PostInfo> optionalPost=postRepository.findById(postId);
-        if(optionalPost.isEmpty()){
-            log.info("해당 postId를 찾을 수 없습니다 : {}",postId);
+    public ResponseEntity<?> getDetailedPost(@PathVariable String category, @PathVariable Long postId, HttpSession session) {
+        Optional<PostInfo> optionalPost = postRepository.findById(postId);
+        if (optionalPost.isEmpty()) {
+            log.info("해당 postId를 찾을 수 없습니다 : {}", postId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 게시글이 존재하지 않습니다");
         }
-        PostInfo post=optionalPost.get();
-        return ResponseEntity.ok(post);
+        PostInfo post = optionalPost.get();
+
+        MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
+        // 로그인 정보가 없을 수도 있으니 null 체크 필요
+        Map<String, Object> response = new HashMap<>();
+        response.put("post", post);
+        response.put("userInfo", loginMember);
+
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{category}/{postId}")

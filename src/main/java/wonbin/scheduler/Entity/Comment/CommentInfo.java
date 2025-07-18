@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class CommentInfo {
     private Long comment_Id;
     private String username;
+    private int userId;
     private String comment_content;
     private Long postedId;
 
