@@ -27,16 +27,16 @@ public class ScheduleController {
         ));
     }
 
-    //TOdo @Getmapping으로 신청 내역 가져오는 것도 필요함 + 사용자 별로 update 및 삭제 가능하도록
+    //TOdo 사용자 별로 update 및 삭제 가능하도록
     @PostMapping("/schedule/apply")
     public ResponseEntity<?> applySchedule(@RequestBody ScheduleInfo applying){
         scheduleRepository.save(applying);
         return ResponseEntity.ok("스케줄 신청 완료");
     }
 
-    @GetMapping("/schedule/apply/{month}")
-    public ResponseEntity<?> returnApplyList(@PathVariable int month){
-        List<ScheduleInfo> list=scheduleRepository.findApplyUseMonth(month);
+    @GetMapping("/schedule/apply/{year}/{month}")
+    public ResponseEntity<?> returnApplyList(@PathVariable int year,@PathVariable int month){
+        List<ScheduleInfo> list=scheduleRepository.findApplyUseMonth(year,month);
         log.info("신청 데이터 전송 Month = {}",month);
         return ResponseEntity.ok(list);
     }
