@@ -3,14 +3,42 @@ package wonbin.scheduler.Controller.Schedule;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import wonbin.scheduler.Entity.Member.MemberInfo;
+import wonbin.scheduler.Entity.Schedule.ScheduleInfo;
+import wonbin.scheduler.Repository.Schedule.MemoryScheduleRepository;
+import wonbin.scheduler.Repository.Schedule.ScheduleRepository;
+
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
 public class ScheduleController {
-    @GetMapping("/schedule")
-    public ResponseEntity<?> checkSession(HttpSession session){
-        return ResponseEntity.ok("schedule 페이지입니다");
+
+    ScheduleRepository scheduleRepository=new MemoryScheduleRepository();
+
+    @GetMapping("/schedulePage")
+    public ResponseEntity<?> checkSession(HttpSession session){ /// 로그인 여부 및 로그인 정보 받아옴
+        MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
+        return ResponseEntity.ok(Map.of(
+                "id", loginMember.getUsernumber(),
+                "name", loginMember.getUsername()
+        ));
     }
+
+    //TOdo @Getmapping으로 신청 내역 가져오는 것도 필요함 + 사용자 별로 update 및 삭제 가능하도록
+    @PostMapping("/schedule/apply")
+    public ResponseEntity<?> applySchedule(@RequestBody ScheduleInfo applying){
+        scheduleRepository.save(applying);
+        return ResponseEntity.ok("스케줄 신청 완료");
+    }
+
+    @GetMapping("/schedule/apply/{month}")
+    public ResponseEntity<?> returnApplyList(@PathVariable int month){
+        List<ScheduleInfo> list=scheduleRepository.findApplyUseMonth(month);
+        log.info("신청 데이터 전송 Month = {}",month);
+        return ResponseEntity.ok(list);
+    }
+
 }
