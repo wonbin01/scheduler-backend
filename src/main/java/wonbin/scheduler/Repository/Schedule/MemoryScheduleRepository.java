@@ -21,12 +21,13 @@ public class MemoryScheduleRepository implements ScheduleRepository{
     }
 
     @Override
-    public List<ScheduleInfo> findApplyUseMonth(int month) {
+    public List<ScheduleInfo> findApplyUseMonth(int year,int month) {
         List<ScheduleInfo> result = new ArrayList<>();
         for (int usernum : hm.keySet()) {
             ArrayList<ScheduleInfo> al = hm.get(usernum);
             for (ScheduleInfo info : al) {
-                if (info.getApplyDate() != null && info.getApplyDate().getMonthValue() == month) {
+                if (info.getApplyDate() != null && info.getApplyDate().getYear()==year
+                        &&info.getApplyDate().getMonthValue() == month) {
                     result.add(info);
                 }
             }

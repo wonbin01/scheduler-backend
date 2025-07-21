@@ -34,9 +34,9 @@ public class ScheduleController {
         return ResponseEntity.ok("스케줄 신청 완료");
     }
 
-    @GetMapping("/schedule/apply/{month}")
-    public ResponseEntity<?> returnApplyList(@PathVariable int month){
-        List<ScheduleInfo> list=scheduleRepository.findApplyUseMonth(month);
+    @GetMapping("/schedule/apply/{year}/{month}")
+    public ResponseEntity<?> returnApplyList(@PathVariable int year,@PathVariable int month){
+        List<ScheduleInfo> list=scheduleRepository.findApplyUseMonth(year,month);
         log.info("신청 데이터 전송 Month = {}",month);
         return ResponseEntity.ok(list);
     }
