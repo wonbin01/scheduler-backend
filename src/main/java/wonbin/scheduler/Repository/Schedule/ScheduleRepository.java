@@ -8,4 +8,7 @@ import java.util.List;
 public interface ScheduleRepository {
     public void save(ScheduleInfo info);
     public List<ScheduleInfo> findApplyUseMonth(int year,int month);
+    public void delete(long applyId);
+    public ScheduleInfo findByApplyId(long applyId);
+    public void update(ScheduleInfo info);
 }
