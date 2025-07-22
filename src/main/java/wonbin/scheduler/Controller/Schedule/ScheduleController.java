@@ -2,6 +2,7 @@ package wonbin.scheduler.Controller.Schedule;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Member.MemberInfo;
@@ -34,11 +35,22 @@ public class ScheduleController {
         return ResponseEntity.ok("스케줄 신청 완료");
     }
 
+    @DeleteMapping("/schedule/apply/{applyId}")
+    public ResponseEntity<?> deleteSchedule(@PathVariable long applyId){
+        scheduleRepository.delete(applyId);
+        return ResponseEntity.ok(applyId+"삭제 완료");
+    }
+
     @GetMapping("/schedule/apply/{year}/{month}")
     public ResponseEntity<?> returnApplyList(@PathVariable int year,@PathVariable int month){
         List<ScheduleInfo> list=scheduleRepository.findApplyUseMonth(year,month);
         log.info("신청 데이터 전송 Month = {}",month);
         return ResponseEntity.ok(list);
+    }
+
+    @PutMapping("schedule/apply/{applyId}")
+    public ResponseEntity<?> updateSchedule(@PathVariable long applyId,@RequestBody ScheduleInfo info){
+        scheduleRepository.update(info); //수정하는 로직 추가해야됨
     }
 
 }
