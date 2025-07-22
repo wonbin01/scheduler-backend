@@ -14,8 +14,8 @@ public class MemoryScheduleRepository implements ScheduleRepository{
 
     @Override
     public void save(ScheduleInfo info) {
-        //일단 지금은 적용이 되는지 확인. 이후 날짜 지정해서 유효성 검사하는 방식 도입
         int usernum = info.getUsernumber(); // 사용자의 사번
+        //유효성 검사
         hm.putIfAbsent(usernum, new ArrayList<>());
         hm.get(usernum).add(info);
     }
