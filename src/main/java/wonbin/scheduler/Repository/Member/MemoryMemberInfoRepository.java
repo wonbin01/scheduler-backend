@@ -1,10 +1,14 @@
 package wonbin.scheduler.Repository.Member;
 
+import org.springframework.stereotype.Repository;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class MemoryRepository implements Repository {
+@Repository
+public class MemoryMemberInfoRepository implements MemberInfoRepository {
     HashMap<Integer, MemberInfo> hm=new HashMap<>();
     @Override
     public void save(MemberInfo member) {
@@ -14,5 +18,10 @@ public class MemoryRepository implements Repository {
     @Override
     public MemberInfo findById(int Id) {
         return hm.get(Id);
+    }
+
+    @Override
+    public List<MemberInfo> findAll() {
+        return new ArrayList<>(hm.values());
     }
 }

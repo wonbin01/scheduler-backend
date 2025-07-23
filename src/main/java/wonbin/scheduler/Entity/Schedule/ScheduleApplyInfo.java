@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-public class ScheduleInfo {
+public class ScheduleApplyInfo {
     private int usernumber;          // 신청한 사람 사번
     private String username;         // 신청한 사람 이름
     private String timeSlot;         // 신청 내용

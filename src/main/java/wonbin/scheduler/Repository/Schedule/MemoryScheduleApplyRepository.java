@@ -1,8 +1,8 @@
 package wonbin.scheduler.Repository.Schedule;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import wonbin.scheduler.Entity.Schedule.ScheduleInfo;
+import org.springframework.stereotype.Repository;
+import wonbin.scheduler.Entity.Schedule.ScheduleApplyInfo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,16 +11,17 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Slf4j
-public class MemoryScheduleRepository implements ScheduleRepository{
-    HashMap<Integer, ArrayList<ScheduleInfo>> hm=new HashMap<>();
+@Repository
+public class MemoryScheduleApplyRepository implements ScheduleApplyRepository {
+    HashMap<Integer, ArrayList<ScheduleApplyInfo>> hm=new HashMap<>();
     private long applyIdSequence = 0;
 
     @Override
-    public ScheduleInfo findByApplyId(long applyId) {
+    public ScheduleApplyInfo findByApplyId(long applyId) {
         for (int id : hm.keySet()) {
-            List<ScheduleInfo> list = hm.get(id);
+            List<ScheduleApplyInfo> list = hm.get(id);
             if (list == null) continue;
-            for (ScheduleInfo info : list) {
+            for (ScheduleApplyInfo info : list) {
                 if (info.getApplyId() == applyId) {
                     return info;
                 }
@@ -30,8 +31,8 @@ public class MemoryScheduleRepository implements ScheduleRepository{
     }
 
     @Override
-    public void update(ScheduleInfo info) {
-        ScheduleInfo update = findByApplyId(info.getApplyId());
+    public void update(ScheduleApplyInfo info) {
+        ScheduleApplyInfo update = findByApplyId(info.getApplyId());
         if (update == null) {
             log.warn("스케줄 업데이트 실패 - 존재하지 않음 applyId: {}", info.getApplyId());
             throw new NoSuchElementException("해당 스케줄이 존재하지 않습니다.");
@@ -51,7 +52,7 @@ public class MemoryScheduleRepository implements ScheduleRepository{
     @Override
     public void delete(long applyId) {
         for (int id : hm.keySet()) {
-            List<ScheduleInfo> list = hm.get(id);
+            List<ScheduleApplyInfo> list = hm.get(id);
             boolean removed = list.removeIf(info -> info.getApplyId() == applyId);
             if (removed){
                 log.info("applyId 삭제  : {}",applyId);// 삭제 완료하면 종료
@@ -61,7 +62,7 @@ public class MemoryScheduleRepository implements ScheduleRepository{
     }
 
     @Override
-    public void save(ScheduleInfo info) {
+    public void save(ScheduleApplyInfo info) {
         int usernum = info.getUsernumber(); // 사용자의 사번
         applyIdSequence++;
         info.setApplyId(applyIdSequence);
@@ -72,11 +73,11 @@ public class MemoryScheduleRepository implements ScheduleRepository{
     }
 
     @Override
-    public List<ScheduleInfo> findApplyUseMonth(int year,int month) {
-        List<ScheduleInfo> result = new ArrayList<>();
+    public List<ScheduleApplyInfo> findApplyUseMonth(int year, int month) {
+        List<ScheduleApplyInfo> result = new ArrayList<>();
         for (int usernum : hm.keySet()) {
-            ArrayList<ScheduleInfo> al = hm.get(usernum);
-            for (ScheduleInfo info : al) {
+            ArrayList<ScheduleApplyInfo> al = hm.get(usernum);
+            for (ScheduleApplyInfo info : al) {
                 if (info.getApplyDate() != null && info.getApplyDate().getYear()==year
                         &&info.getApplyDate().getMonthValue() == month) {
                     result.add(info);
