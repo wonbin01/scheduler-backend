@@ -2,19 +2,22 @@ package wonbin.scheduler.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import wonbin.scheduler.Repository.Member.MemoryRepository;
-import wonbin.scheduler.Repository.Member.Repository;
+import wonbin.scheduler.Repository.Member.MemoryMemberInfoRepository;
+import wonbin.scheduler.Repository.Member.MemberInfoRepository;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class LoginController {
 
-    Repository repository=new MemoryRepository(); //지금은 일단 메모리에 저장
+    private final MemberInfoRepository repository; //지금은 일단 메모리에 저장
 
     @PostMapping("/signup") //회원가입
     public ResponseEntity<String> participation(@RequestBody MemberInfo info) {
