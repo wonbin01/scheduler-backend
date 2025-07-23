@@ -3,6 +3,7 @@ package wonbin.scheduler.Controller.Schedule;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Member.MemberInfo;
@@ -42,12 +43,22 @@ public class ScheduleViewController {
         return ResponseEntity.ok(memberRepository.findAll());
     }
 
-    @PostMapping("scheduleview/apply")
+    @PostMapping("/scheduleview/apply")
     public ResponseEntity<?> saveSchedule(@RequestBody List<ScheduleViewInfo> list){
         if(list == null || list.isEmpty()){
             return ResponseEntity.badRequest().body("스케줄 데이터가 없습니다");
         }
         viewRepository.saveAll(list);  // 한 번에 처리
         return ResponseEntity.ok("스케줄이 정상적으로 저장되었습니다");
+    }
+
+    @DeleteMapping("/scheduleview/{id}")
+    public ResponseEntity<?> deleteSchedule(@PathVariable long id) {
+        ScheduleViewInfo byScheduleId = viewRepository.findByScheduleId(id);
+        if (byScheduleId == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 id를 찾지 못했습니다");
+        }
+        viewRepository.delete(byScheduleId);
+        return ResponseEntity.ok("해당 스케줄 삭제 완료");
     }
 }
