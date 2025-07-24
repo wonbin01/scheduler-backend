@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wonbin.scheduler.mapper.MemberInfoMapper">
+    <insert id="insertMemberInfo" parameterType="wonbin.scheduler.Entity.Member.MemberInfo" useGeneratedKeys="true" keyProperty="usernumber">
+        INSERT INTO member_info (password, username,usernumber) VALUES (#{password}, #{username},#{usernumber})
+    </insert>
+
+    <select id="findByUserNumber" resultType="wonbin.scheduler.Entity.Member.MemberInfo">
+        SELECT usernumber, password, username FROM member_info WHERE usernumber = #{usernumber}
+    </select>
+</mapper>
