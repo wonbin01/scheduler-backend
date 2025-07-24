@@ -3,12 +3,14 @@ package wonbin.scheduler.Repository.Schedule;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Schedule.ScheduleViewInfo;
 import wonbin.scheduler.Repository.Member.MemberInfoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
@@ -79,7 +81,10 @@ public class MemoryScheduleViewRepository implements ScheduleViewRepository{
             List<ScheduleViewInfo> schedules = hm.get(member);
             for (ScheduleViewInfo info : schedules) {
                 if (info.getApplyDate() != null && info.getApplyDate().getYear() == year && info.getApplyDate().getMonthValue() == month) {
-                    info.setUserName(memberInfoRepository.findById(info.getUserNumber()).getUsername());
+                    Optional<MemberInfo> optionalMember=memberInfoRepository.findById(info.getUserNumber());
+                    optionalMember.ifPresent(Member ->{
+                        info.setUserName(Member.getUsername());
+                    });
                     result.add(info);
                 }
             }
