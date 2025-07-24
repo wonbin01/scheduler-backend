@@ -1,6 +1,7 @@
 package wonbin.scheduler.Controller.Notice;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,6 @@ import org.springframework.web.server.ResponseStatusException;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Post.PostInfo;
 import wonbin.scheduler.Repository.Category.CategoryRepository;
-import wonbin.scheduler.Repository.Category.MemoryCategoryRepository;
 import wonbin.scheduler.Repository.PostNotice.MemoryPostRepository;
 import wonbin.scheduler.Repository.PostNotice.PostRepository;
 
@@ -17,16 +17,17 @@ import java.util.*;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/notice")
 public class NoticeController {
 
-    CategoryRepository repository=new MemoryCategoryRepository();
+    private final CategoryRepository categoryRepository;
     PostRepository postRepository=new MemoryPostRepository();
 
     @GetMapping
     public ResponseEntity<?> Getcategory_list() {
         // repository에서 카테고리 목록 가져오기
-        List<String> categories = repository.find_all_category();
+        List<String> categories = categoryRepository.find_all_category();
         Map<String, Object> response = new HashMap<>();
         response.put("categories", categories);
         return ResponseEntity.ok(response);
@@ -35,7 +36,7 @@ public class NoticeController {
     @PostMapping("/category")
     public ResponseEntity<?> Addcategory(@RequestBody Map<String,String> body){
         String newcategory=body.get("name");
-        List<String> all_category=repository.find_all_category();
+        List<String> all_category=categoryRepository.find_all_category();
         if(all_category.contains(newcategory.trim())){
             log.info("중복된 카테고리입니다");
             return ResponseEntity.badRequest().body("중복된 카테고리");
@@ -44,7 +45,7 @@ public class NoticeController {
             return ResponseEntity.badRequest().body("카테고리 이름이 비어있습니다.");
         }
 
-        repository.save_category(newcategory);
+        categoryRepository.save_category(newcategory);
         log.info("카테고리 : {} 추가",newcategory.trim());
         return ResponseEntity.ok("카테고리 추가 성공");
     }

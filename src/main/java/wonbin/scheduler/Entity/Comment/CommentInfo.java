@@ -2,10 +2,12 @@ package wonbin.scheduler.Entity.Comment;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
 @Data
+@Table("comment_info")
 public class CommentInfo {
     private Long comment_Id;
     private String username;

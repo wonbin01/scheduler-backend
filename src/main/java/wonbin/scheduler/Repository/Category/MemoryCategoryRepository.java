@@ -2,10 +2,8 @@ package wonbin.scheduler.Repository.Category;
 
 import wonbin.scheduler.Entity.NoticeCategory.NoticeCategory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 public class MemoryCategoryRepository implements CategoryRepository{
     private final Map<String, NoticeCategory> hm=new HashMap<>();
@@ -14,6 +12,11 @@ public class MemoryCategoryRepository implements CategoryRepository{
         for(String name : List.of("매점","웰컴","엔젤","인사","소방","기타")){
             hm.put(name,new NoticeCategory(name));
         }
+    }
+
+    @Override
+    public Optional<NoticeCategory> find_by_name(String name) {
+        return Optional.empty();
     }
 
     @Override

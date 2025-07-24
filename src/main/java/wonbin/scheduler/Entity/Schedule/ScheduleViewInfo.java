@@ -2,11 +2,13 @@ package wonbin.scheduler.Entity.Schedule;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
+@Table("view_info")
 public class ScheduleViewInfo {
     private int userNumber; //사번
     private String position; // 근무 포지션

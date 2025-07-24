@@ -1,11 +1,13 @@
 package wonbin.scheduler.Entity.Schedule;
 
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
+@Table("apply_info")
 public class ScheduleApplyInfo {
     private int usernumber;          // 신청한 사람 사번
     private String username;         // 신청한 사람 이름

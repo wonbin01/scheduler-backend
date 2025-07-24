@@ -1,7 +1,9 @@
 package wonbin.scheduler.Entity.Post;
 
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table("post_info")
 @Data
 public class PostInfo {
     private Long id;
