@@ -10,7 +10,6 @@ import org.springframework.web.server.ResponseStatusException;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Post.PostInfo;
 import wonbin.scheduler.Repository.Category.CategoryRepository;
-import wonbin.scheduler.Repository.PostNotice.MemoryPostRepository;
 import wonbin.scheduler.Repository.PostNotice.PostRepository;
 
 import java.util.*;
@@ -22,7 +21,7 @@ import java.util.*;
 public class NoticeController {
 
     private final CategoryRepository categoryRepository;
-    PostRepository postRepository=new MemoryPostRepository();
+    private final PostRepository postRepository;
 
     @GetMapping
     public ResponseEntity<?> Getcategory_list() {
@@ -74,7 +73,8 @@ public class NoticeController {
         }
         PostInfo post = optionalPost.get();
 
-        MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
+        MemberInfo loginMember=(MemberInfo) session.getAttribute("loginMember");
+        loginMember.setPassword("");
         // 로그인 정보가 없을 수도 있으니 null 체크 필요
         Map<String, Object> response = new HashMap<>();
         response.put("post", post);
@@ -99,6 +99,7 @@ public class NoticeController {
             PostInfo post=variable.get();
             post.setTitle(update.getTitle());
             post.setContent(update.getContent());
+            post.setCategoryName(category);
             postRepository.update(post);
         }
         else{
