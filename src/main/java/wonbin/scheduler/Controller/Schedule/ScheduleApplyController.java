@@ -3,12 +3,12 @@ package wonbin.scheduler.Controller.Schedule;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Schedule.ScheduleApplyInfo;
-import wonbin.scheduler.Repository.Schedule.MemoryScheduleApplyRepository;
 import wonbin.scheduler.Repository.Schedule.ScheduleApplyRepository;
 
 import java.util.List;
@@ -20,11 +20,13 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class ScheduleApplyController {
 
+    @Autowired
     private final ScheduleApplyRepository scheduleRepository;
 
     @GetMapping("/scheduleApplyPage")
     public ResponseEntity<?> checkSession(HttpSession session){ /// 로그인 여부 및 로그인 정보 받아옴
         MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
+        loginMember.setPassword("");
         return ResponseEntity.ok(Map.of(
                 "id", loginMember.getUsernumber(),
                 "name", loginMember.getUsername()
