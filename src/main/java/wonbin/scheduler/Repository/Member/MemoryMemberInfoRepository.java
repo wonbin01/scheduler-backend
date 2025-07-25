@@ -6,8 +6,8 @@ import wonbin.scheduler.Entity.Member.MemberInfo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
-@Repository
 public class MemoryMemberInfoRepository implements MemberInfoRepository {
     HashMap<Integer, MemberInfo> hm=new HashMap<>();
     @Override
@@ -16,8 +16,8 @@ public class MemoryMemberInfoRepository implements MemberInfoRepository {
     }
 
     @Override
-    public MemberInfo findById(int Id) {
-        return hm.get(Id);
+    public Optional<MemberInfo> findById(int Id) {
+        return Optional.empty();
     }
 
     @Override
