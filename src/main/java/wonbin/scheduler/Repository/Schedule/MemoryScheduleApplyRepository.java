@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Slf4j
-@Repository
 public class MemoryScheduleApplyRepository implements ScheduleApplyRepository {
     HashMap<Integer, ArrayList<ScheduleApplyInfo>> hm=new HashMap<>();
     private long applyIdSequence = 0;
