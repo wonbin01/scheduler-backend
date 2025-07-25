@@ -3,6 +3,7 @@ package wonbin.scheduler.Controller.Notice;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/notice")
 public class CommentController {
-    CommentRepositoy commentRepositoy= new MemoryCommentRepository();
+    @Autowired
+    CommentRepositoy commentRepositoy;
 
     @GetMapping("/{category}/{id}/comments")
     public ResponseEntity<List<CommentInfo>> returnComment(
@@ -32,6 +34,7 @@ public class CommentController {
     @PostMapping("/{category}/{id}/comments")
     public ResponseEntity<String> Save_Comment(@PathVariable String category, @PathVariable long id, @RequestBody CommentInfo comment, HttpSession session){
         MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
+        loginMember.setPassword("");
         comment.setUserId(loginMember.getUsernumber());
         comment.setUsername(loginMember.getUsername());
         comment.setPostedId(id);
