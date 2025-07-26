@@ -14,8 +14,8 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
-@Repository
 @RequiredArgsConstructor
+//@Repository
 public class MemoryScheduleViewRepository implements ScheduleViewRepository{
 
     private final MemberInfoRepository memberInfoRepository;
