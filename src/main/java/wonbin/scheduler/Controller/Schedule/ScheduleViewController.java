@@ -13,6 +13,7 @@ import wonbin.scheduler.Repository.Schedule.ScheduleViewRepository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -24,6 +25,7 @@ public class ScheduleViewController {
     @GetMapping("/scheduleView")
     public ResponseEntity<?> checkSession(HttpSession session){ /// 로그인 여부 및 로그인 정보 받아옴
         MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
+        loginMember.setPassword("");
         log.info("로그인 여부 확인");
         return ResponseEntity.ok(Map.of(
                 "id", loginMember.getUsernumber(),
@@ -39,8 +41,12 @@ public class ScheduleViewController {
     }
 
     @GetMapping("/member/all")
-    public ResponseEntity<?> returnAllMember(){
-        return ResponseEntity.ok(memberRepository.findAll());
+    public ResponseEntity<?> returnAllMember() {
+        List<MemberInfo> info=memberRepository.findAll();
+        for(MemberInfo candidate : info){
+            candidate.setPassword("");
+        }
+        return ResponseEntity.ok(info);
     }
 
     @PostMapping("/scheduleview/apply")
@@ -48,6 +54,22 @@ public class ScheduleViewController {
         if(list == null || list.isEmpty()){
             return ResponseEntity.badRequest().body("스케줄 데이터가 없습니다");
         }
+
+        Integer userNumber=list.get(0).getUserNumber();
+        String userName=null;
+        if(userNumber!=null){
+            Optional<MemberInfo> optionalMember=memberRepository.findById(userNumber);
+            if(optionalMember.isPresent()){
+                userName=optionalMember.get().getUsername();
+            } else{
+                return ResponseEntity.badRequest().body("사용자 찾기 실패");
+            }
+        } else {
+            return ResponseEntity.badRequest().body("사용자 번호가 제공되지 않았습니다.");
+        }
+        String finalUserName=userName;
+        list.forEach(info->info.setUserName(finalUserName));
+
         viewRepository.saveAll(list);  // 한 번에 처리
         return ResponseEntity.ok("스케줄이 정상적으로 저장되었습니다");
     }
