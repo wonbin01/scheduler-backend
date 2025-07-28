@@ -18,6 +18,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class ScheduleViewController {
      private final ScheduleViewRepository viewRepository;
      private final MemberInfoRepository memberRepository;
