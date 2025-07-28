@@ -18,6 +18,7 @@ import java.util.NoSuchElementException;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class ScheduleApplyController {
 
     @Autowired

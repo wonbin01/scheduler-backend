@@ -17,7 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LoginController {
 
-    private final MemberInfoRepository repository; //지금은 일단 메모리에 저장
+    private final MemberInfoRepository repository;
 
     @PostMapping("/signup") //회원가입
     public ResponseEntity<String> participation(@RequestBody MemberInfo info) {
@@ -59,7 +59,7 @@ public class LoginController {
         return check;
     }
 
-    @PostMapping("/logout")
+    @PostMapping("/api/logout")
     public ResponseEntity<String> logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false); // 현재 세션 가져오기 (없으면 null 반환)
         if (session != null) {

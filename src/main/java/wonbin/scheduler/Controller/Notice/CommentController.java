@@ -2,7 +2,6 @@ package wonbin.scheduler.Controller.Notice;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,14 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Comment.CommentInfo;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Repository.Comment.CommentRepositoy;
-import wonbin.scheduler.Repository.Comment.MemoryCommentRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/notice")
+@RequestMapping("/api/notice")
 public class CommentController {
     @Autowired
     CommentRepositoy commentRepositoy;

@@ -16,8 +16,17 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         log.info("인터셉터 실행 : {}", uri);
 
         // 세션 체크 예외 경로 목록
-        if (uri.equals("/") || uri.equals("/index.html") || uri.equals("/login") || uri.equals("/signup") || uri.startsWith("/css") || uri.startsWith("/js") || uri.startsWith("/images")) {
-            return true; // 예외 경로는 체크하지 않고 통과
+        if (uri.equals("/")
+                || uri.equals("/index.html")
+                || uri.startsWith("/login")
+                || uri.startsWith("/signup")
+                || uri.startsWith("/css")
+                || uri.startsWith("/js")
+                || uri.startsWith("/images")
+                || uri.matches(".*\\.(js|css|png|jpg|svg|ico|woff2?)$")
+                || !uri.startsWith("/api/")
+        ) {
+            return true;
         }
 
         HttpSession session = request.getSession(false);

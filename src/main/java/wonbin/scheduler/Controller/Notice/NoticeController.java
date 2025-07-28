@@ -17,7 +17,7 @@ import java.util.*;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/notice")
+@RequestMapping("/api/notice")
 public class NoticeController {
 
     private final CategoryRepository categoryRepository;
