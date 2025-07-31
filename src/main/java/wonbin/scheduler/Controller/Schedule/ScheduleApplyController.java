@@ -3,14 +3,18 @@ package wonbin.scheduler.Controller.Schedule;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Member.MemberInfo;
+import wonbin.scheduler.Entity.Schedule.AllowedDate;
 import wonbin.scheduler.Entity.Schedule.ScheduleApplyInfo;
+import wonbin.scheduler.Repository.Schedule.AllowedDateRepository;
 import wonbin.scheduler.Repository.Schedule.ScheduleApplyRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -23,6 +27,8 @@ public class ScheduleApplyController {
 
     @Autowired
     private final ScheduleApplyRepository scheduleRepository;
+    @Autowired
+    private final AllowedDateRepository allowedDateRepository;
 
     @GetMapping("/scheduleApplyPage")
     public ResponseEntity<?> checkSession(HttpSession session){ /// 로그인 여부 및 로그인 정보 받아옴
@@ -69,6 +75,33 @@ public class ScheduleApplyController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류 발생");
         }
+    }
+
+    @GetMapping("/allowed-dates")
+    public ResponseEntity<?> getAllowedDates(){
+        List<AllowedDate> allAllowedDate = allowedDateRepository.findAllAllowedDate();
+        if(allAllowedDate.isEmpty()){
+            return ResponseEntity.ok(Collections.emptyList());
+        }
+        return ResponseEntity.ok(allAllowedDate);
+    }
+
+    @DeleteMapping("/allowed-dates/{date}")
+    public ResponseEntity<?> deleteAllowedDate(@PathVariable String date){
+        boolean isDeleted = allowedDateRepository.deleteAllowedDate(date); //true면 삭제, false면 삭제 실패
+        if(!isDeleted){
+            return ResponseEntity.status(404).body("삭제할 날짜가 존재하지 않습니다: " + date);
+        }
+        log.info("해당 날짜 삭제 완료 date={}",date);
+        return ResponseEntity.ok("해당 날짜 삭제 완료 date={}");
+    }
+    @PostMapping("/allowed-dates/bulk")
+    public ResponseEntity<?> saveAllowedDates(@RequestBody List<String> dates) {
+        boolean success = allowedDateRepository.saveAllowedDate(dates);
+        if (!success) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("저장 실패");
+        }
+        return ResponseEntity.ok("저장 성공");
     }
 
 }
