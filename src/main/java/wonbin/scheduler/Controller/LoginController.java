@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import wonbin.scheduler.Repository.Member.JDBCMemberInfoRepository;
 import wonbin.scheduler.Repository.Member.MemberInfoRepository;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 
@@ -19,15 +20,21 @@ public class LoginController {
 
     private final MemberInfoRepository repository;
 
-    @PostMapping("/signup") //회원가입
+    @PostMapping("/signup") // 회원가입
     public ResponseEntity<String> participation(@RequestBody MemberInfo info) {
-        log.info("회원가입");
-        int private_num=info.getUsernumber();
-        String private_password=info.getPassword();
-        String private_name=info.getUsername();
-        log.info("MemberId={} ,MemberName={}, PassWord={}",private_num,private_name,private_password);
-        repository.save(info);
-        return ResponseEntity.ok("회원가입 성공");
+        log.info("회원가입 요청: MemberId={}, MemberName={}", info.getUsernumber(), info.getUsername());
+
+        try {
+            // repository.save() 메서드가 성공하면(예외를 던지지 않으면) 이 부분이 실행됩니다.
+            repository.save(info);
+            log.info("회원가입 성공: MemberId={}", info.getUsernumber());
+            return ResponseEntity.ok("회원가입 성공");
+        } catch (JDBCMemberInfoRepository.DuplicateMemberException e) {
+            // repository.save()에서 던진 DuplicateMemberException을 여기서 잡습니다.
+            log.error("회원가입 실패: {}", e.getMessage());
+            // 올바른 HTTP 상태 코드인 409 Conflict와 예외 메시지를 반환합니다.
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
 
     @PostMapping("/login")
