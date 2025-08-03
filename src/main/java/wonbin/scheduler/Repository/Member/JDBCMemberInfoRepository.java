@@ -1,5 +1,6 @@
 package wonbin.scheduler.Repository.Member;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -33,8 +34,20 @@ public class JDBCMemberInfoRepository implements MemberInfoRepository{
 
     @Override
     public void save(MemberInfo member) {
-        String sql="INSERT INTO member_info (usernumber,password,username) VALUES (?,?,?)";
-        jdbcTemplate.update(sql,member.getUsernumber(),member.getPassword(),member.getUsername());
+        String sql = "INSERT INTO member_info (usernumber, password, username) VALUES (?,?,?)";
+        boolean isDuplicated=false;
+        try {
+            jdbcTemplate.update(sql, member.getUsernumber(), member.getPassword(), member.getUsername());
+        } catch (DuplicateKeyException e) {
+            // 중복 아이디 예외를 더 명확한 커스텀 예외로 변환
+            throw new DuplicateMemberException("이미 존재하는 아이디입니다.");
+        }
+    }
+
+    public class DuplicateMemberException extends RuntimeException {
+        public DuplicateMemberException(String message) {
+            super(message);
+        }
     }
 
     @Override
