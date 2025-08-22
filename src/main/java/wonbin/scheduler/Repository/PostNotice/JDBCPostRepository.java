@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@Repository
+//@Repository
 public class JDBCPostRepository implements PostRepository{
     private final JdbcTemplate jdbcTemplate;
     private final PostInfoRowMapper postInfoRowMapper=new PostInfoRowMapper();

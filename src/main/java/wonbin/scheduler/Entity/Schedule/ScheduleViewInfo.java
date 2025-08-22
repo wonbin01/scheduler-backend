@@ -1,14 +1,15 @@
 package wonbin.scheduler.Entity.Schedule;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
-@Table("view_info")
+@Table(name="view_info")
+@Entity
 public class ScheduleViewInfo {
     private int userNumber; //사번
     private String position; // 근무 포지션
@@ -19,5 +20,7 @@ public class ScheduleViewInfo {
     @JsonFormat(pattern = "HH:mm", timezone = "Asia/Seoul")
     private LocalTime endTime; //퇴근 시간
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long scheduleEventId; //신청 Id
 }

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@Repository
+//@Repository
 public class JDBCCategoryRepository implements CategoryRepository{
 
     private final JdbcTemplate jdbcTemplate;

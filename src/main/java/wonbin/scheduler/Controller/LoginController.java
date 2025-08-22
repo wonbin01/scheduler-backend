@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Repository.Member.JDBCMemberInfoRepository;
+import wonbin.scheduler.Repository.Member.JpaMemberInfoRepository;
 import wonbin.scheduler.Repository.Member.MemberInfoRepository;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 
@@ -19,21 +20,25 @@ import java.util.Optional;
 public class LoginController {
 
     private final MemberInfoRepository repository;
+    private final JpaMemberInfoRepository jpaMemberInfoRepository;
 
     @PostMapping("/signup") // 회원가입
     public ResponseEntity<String> participation(@RequestBody MemberInfo info) {
         log.info("회원가입 요청: MemberId={}, MemberName={}", info.getUsernumber(), info.getUsername());
-
+        // 1. 중복 회원 여부 확인
+        if (jpaMemberInfoRepository.existsById(info.getUsernumber())) {
+            log.error("회원가입 실패: 이미 존재하는 사용자 ID입니다.");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 사용자 ID입니다.");
+        }
         try {
-            // repository.save() 메서드가 성공하면(예외를 던지지 않으면) 이 부분이 실행됩니다.
-            repository.save(info);
+            // 2. 회원 정보 저장
+            jpaMemberInfoRepository.save(info);
             log.info("회원가입 성공: MemberId={}", info.getUsernumber());
             return ResponseEntity.ok("회원가입 성공");
-        } catch (JDBCMemberInfoRepository.DuplicateMemberException e) {
-            // repository.save()에서 던진 DuplicateMemberException을 여기서 잡습니다.
+        } catch (Exception e) {
+            // 3. 기타 예외 처리 (데이터 유효성 등)
             log.error("회원가입 실패: {}", e.getMessage());
-            // 올바른 HTTP 상태 코드인 409 Conflict와 예외 메시지를 반환합니다.
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원가입 실패");
         }
     }
 
@@ -62,7 +67,7 @@ public class LoginController {
         }
 
     private Optional<MemberInfo> getMemberInfo(int private_num) {
-        Optional<MemberInfo> check=repository.findById(private_num);
+        Optional<MemberInfo> check=jpaMemberInfoRepository.findById(private_num);
         return check;
     }
 
