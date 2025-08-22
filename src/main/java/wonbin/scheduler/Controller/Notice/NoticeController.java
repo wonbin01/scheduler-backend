@@ -3,6 +3,7 @@ package wonbin.scheduler.Controller.Notice;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -98,14 +99,15 @@ public class NoticeController {
     }
 
     @DeleteMapping("/{category}/{postId}")
-    public ResponseEntity<?> deletePost(@PathVariable String category, @PathVariable Long postId){
-        jpaPostRepository.deleteById(postId);
-        boolean deleted = jpaPostRepository.existsById(postId);
-        if (!deleted) {
+    public ResponseEntity<String> deletePost(@PathVariable String category, @PathVariable Long postId){
+        try {
+            jpaPostRepository.deleteById(postId);
+            log.info("삭제 성공 ID : {}", postId);
+            return ResponseEntity.ok(String.format("삭제 성공 ID=%d", postId));
+        } catch (EmptyResultDataAccessException e) {
+            // 해당 게시글 ID가 없어 삭제 실패한 경우
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 게시글이 없습니다.");
         }
-        log.info("삭제 성공 ID : {}",postId);
-        return ResponseEntity.ok(String.format("삭제 성공 ID=%d", postId));
     }
 
     @PutMapping("/{category}/{postId}")

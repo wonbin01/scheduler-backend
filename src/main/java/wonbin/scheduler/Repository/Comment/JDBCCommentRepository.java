@@ -11,7 +11,7 @@ import wonbin.scheduler.Entity.Comment.CommentInfo;
 import java.sql.*;
 import java.util.List;
 
-@Repository
+//@Repository
 @Slf4j
 public class JDBCCommentRepository implements CommentRepositoy{
 

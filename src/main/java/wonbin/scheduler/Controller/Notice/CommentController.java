@@ -1,14 +1,17 @@
 package wonbin.scheduler.Controller.Notice;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Comment.CommentInfo;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Repository.Comment.CommentRepositoy;
+import wonbin.scheduler.Repository.Comment.JpaCommentRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,16 +19,18 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/notice")
+@RequiredArgsConstructor
 public class CommentController {
-    @Autowired
-    CommentRepositoy commentRepositoy;
+//    @Autowired
+//    CommentRepositoy commentRepositoy;
+    private final JpaCommentRepository jpaCommentRepository;
 
     @GetMapping("/{category}/{id}/comments")
     public ResponseEntity<List<CommentInfo>> returnComment(
             @PathVariable String category,
             @PathVariable Long id) {
 
-        List<CommentInfo> comments = commentRepositoy.findby_Id(id);
+        List<CommentInfo> comments = jpaCommentRepository.findByPostedId(id);
         return ResponseEntity.ok(comments);
     }
 
@@ -39,19 +44,19 @@ public class CommentController {
         comment.setCreatedAt(LocalDateTime.now());
         comment.setComment_content(comment.getComment_content());
         log.info("댓글 작성 PostedId : {}",id);
-        commentRepositoy.save_comment(comment);
+        jpaCommentRepository.save(comment);
         return ResponseEntity.ok("댓글 작성 성공");
     }
 
     @DeleteMapping("/{category}/{id}/comments/{commentId}")
     public ResponseEntity<?> deleteComment(@PathVariable String category,@PathVariable long id, @PathVariable long commentId){
-        List<CommentInfo> commentInfos = commentRepositoy.findby_Id(id); //게시글 찾기
+        List<CommentInfo> commentInfos = jpaCommentRepository.findByPostedId(id); //게시글 찾기
         if(commentInfos.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("게시글을 찾을 수 없습니다");
         }
         for(CommentInfo candidate : commentInfos){
             if(candidate.getComment_Id()==commentId){
-                commentRepositoy.delete_comment(candidate);
+                jpaCommentRepository.delete(candidate);
                 log.info("댓글 삭제 왼료 commentId={}",commentId);
                 break;
             }
@@ -74,7 +79,7 @@ public class CommentController {
         }
 
         // 댓글 존재 여부 확인
-        List<CommentInfo> candidate= commentRepositoy.findby_Id(id); //게시글확인
+        List<CommentInfo> candidate = jpaCommentRepository.findByPostedId(id); //게시글 확인
         if (candidate.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("게시글이 존재하지 않습니다");
         }
@@ -86,7 +91,7 @@ public class CommentController {
                 c.setComment_content(editCommentContent.getComment_content());
                 c.setCreatedAt(LocalDateTime.now());
                 c.setUpdated(true);
-                commentRepositoy.update_comment(c);
+                jpaCommentRepository.save(c);
                 log.info("댓글 수정 완료 commentId={}",c.getComment_Id());
                 break;
             }
