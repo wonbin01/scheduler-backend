@@ -14,7 +14,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Repository
+//@Repository
 @Slf4j
 @Transactional
 public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{

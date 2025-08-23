@@ -21,6 +21,6 @@ public class ScheduleViewInfo {
     private LocalTime endTime; //퇴근 시간
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long scheduleEventId; //신청 Id
 }

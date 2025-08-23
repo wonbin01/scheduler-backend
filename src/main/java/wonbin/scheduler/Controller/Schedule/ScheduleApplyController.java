@@ -7,17 +7,22 @@ import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Schedule.AllowedDate;
 import wonbin.scheduler.Entity.Schedule.ScheduleApplyInfo;
 import wonbin.scheduler.Repository.Schedule.AllowedDateRepository;
+import wonbin.scheduler.Repository.Schedule.JpaAllowedDateRepository;
+import wonbin.scheduler.Repository.Schedule.JpaScheduleApplyRepository;
 import wonbin.scheduler.Repository.Schedule.ScheduleApplyRepository;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -25,12 +30,15 @@ import java.util.NoSuchElementException;
 @RequestMapping("/api")
 public class ScheduleApplyController {
 
-    @Autowired
-    private final ScheduleApplyRepository scheduleRepository;
-    @Autowired
-    private final AllowedDateRepository allowedDateRepository;
+//    @Autowired
+//    private final ScheduleApplyRepository scheduleRepository;
+//    @Autowired
+//    private final AllowedDateRepository allowedDateRepository;
 
-    @GetMapping("/scheduleApplyPage")
+    private final JpaScheduleApplyRepository jpaScheduleApplyRepository;
+    private final JpaAllowedDateRepository jpaAllowedDateRepository;
+
+    @GetMapping("/scheduleApplyPage") //이 부분 DTO로 변경하는 거 고려
     public ResponseEntity<?> checkSession(HttpSession session){ /// 로그인 여부 및 로그인 정보 받아옴
         MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
         loginMember.setPassword("");
@@ -42,19 +50,23 @@ public class ScheduleApplyController {
 
     @PostMapping("/schedule/apply")
     public ResponseEntity<?> applySchedule(@RequestBody ScheduleApplyInfo applying){
-        scheduleRepository.save(applying);
+        applying.setCreateAt(LocalDateTime.now());
+        jpaScheduleApplyRepository.save(applying);
+//        scheduleRepository.save(applying);
         return ResponseEntity.ok("스케줄 신청 완료");
     }
 
     @DeleteMapping("/schedule/apply/{applyId}")
     public ResponseEntity<?> deleteSchedule(@PathVariable long applyId){
-        scheduleRepository.delete(applyId);
+        jpaScheduleApplyRepository.deleteById(applyId);
+//        scheduleRepository.delete(applyId);
         return ResponseEntity.ok(applyId+"삭제 완료");
     }
 
     @GetMapping("/schedule/apply/{year}/{month}")
     public ResponseEntity<?> returnApplyList(@PathVariable int year,@PathVariable int month){
-        List<ScheduleApplyInfo> list=scheduleRepository.findApplyUseMonth(year,month);
+//        List<ScheduleApplyInfo> list=scheduleRepository.findApplyUseMonth(year,month);
+        List<ScheduleApplyInfo> list = jpaScheduleApplyRepository.findByApplyDateYearAndMonth(year,month);
         log.info("신청 데이터 전송 Month = {}",month);
         return ResponseEntity.ok(list);
     }
@@ -68,7 +80,10 @@ public class ScheduleApplyController {
             return ResponseEntity.badRequest().body("applyId 불일치");
         }
         try {
-            scheduleRepository.update(info);
+//            scheduleRepository.update(info);
+            info.setUpdatedAt(true);
+            info.setCreateAt(LocalDateTime.now());
+            jpaScheduleApplyRepository.save(info);
             return ResponseEntity.ok("업데이트 완료");
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 스케줄이 존재하지 않습니다.");
@@ -79,28 +94,49 @@ public class ScheduleApplyController {
 
     @GetMapping("/allowed-dates")
     public ResponseEntity<?> getAllowedDates(){
-        List<AllowedDate> allAllowedDate = allowedDateRepository.findAllAllowedDate();
+//        List<AllowedDate> allAllowedDate = allowedDateRepository.findAllAllowedDate();
+        List<AllowedDate> allAllowedDate = jpaAllowedDateRepository.findAll();
         if(allAllowedDate.isEmpty()){
             return ResponseEntity.ok(Collections.emptyList());
         }
         return ResponseEntity.ok(allAllowedDate);
     }
 
-    @DeleteMapping("/allowed-dates/{date}")
+    @Transactional
+    @DeleteMapping("/allowed-dates/{date}") // String으로 보내는것이 아니라 ALlowedDate Id를 보내도록
     public ResponseEntity<?> deleteAllowedDate(@PathVariable String date){
-        boolean isDeleted = allowedDateRepository.deleteAllowedDate(date); //true면 삭제, false면 삭제 실패
-        if(!isDeleted){
+//        boolean isDeleted = allowedDateRepository.deleteAllowedDate(date); //true면 삭제, false면 삭제 실패
+        long deleted = jpaAllowedDateRepository.deleteByDate(date);
+        if(deleted==0){
             return ResponseEntity.status(404).body("삭제할 날짜가 존재하지 않습니다: " + date);
         }
         log.info("해당 날짜 삭제 완료 date={}",date);
         return ResponseEntity.ok("해당 날짜 삭제 완료 date={}");
     }
-    @PostMapping("/allowed-dates/bulk")
-    public ResponseEntity<?> saveAllowedDates(@RequestBody List<String> dates) {
-        boolean success = allowedDateRepository.saveAllowedDate(dates);
-        if (!success) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("저장 실패");
+    @PostMapping("/allowed-dates/bulk") // 동일한 날짜를 저장하려는 경우 문제 발생
+    public ResponseEntity<?> saveAllowedDates(@RequestBody List<String> dates) { //String을 보내는 것이 아니라, Id를 보내도록
+        List<AllowedDate> newDates = new ArrayList<>();
+
+        for (String date : dates) {
+            // 날짜 형식을 강제로 맞춤 (yyyy-MM-dd)
+            String normalizedDate;
+            try {
+                normalizedDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE).toString();
+            } catch (DateTimeParseException e) {
+                throw new IllegalArgumentException("Invalid date format: " + date);
+            }
+
+            // 중복 확인
+            Optional<AllowedDate> existing = jpaAllowedDateRepository.findByDate(normalizedDate);
+            if (existing.isPresent()) continue;
+
+            // 새로 추가
+            AllowedDate newDate = new AllowedDate();
+            newDate.setDate(normalizedDate);
+            newDates.add(newDate);
         }
+
+        jpaAllowedDateRepository.saveAll(newDates);
         return ResponseEntity.ok("저장 성공");
     }
 

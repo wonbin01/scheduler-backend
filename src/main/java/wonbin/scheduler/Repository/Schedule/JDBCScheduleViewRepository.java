@@ -1,6 +1,5 @@
 package wonbin.scheduler.Repository.Schedule;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,7 +15,7 @@ import java.sql.*;
 import java.util.List;
 
 @Slf4j
-@Repository
+//@Repository
 public class JDBCScheduleViewRepository implements ScheduleViewRepository{
 
     private final JdbcTemplate jdbcTemplate;

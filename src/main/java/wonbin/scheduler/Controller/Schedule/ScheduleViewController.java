@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Schedule.ScheduleViewInfo;
+import wonbin.scheduler.Repository.Member.JpaMemberInfoRepository;
 import wonbin.scheduler.Repository.Member.MemberInfoRepository;
+import wonbin.scheduler.Repository.Schedule.JpaScheduleViewRepository;
 import wonbin.scheduler.Repository.Schedule.ScheduleViewRepository;
 
 import java.util.List;
@@ -20,8 +22,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class ScheduleViewController {
-     private final ScheduleViewRepository viewRepository;
-     private final MemberInfoRepository memberRepository;
+//     private final ScheduleViewRepository viewRepository;
+//     private final MemberInfoRepository memberRepository;
+
+     private final JpaScheduleViewRepository jpaScheduleViewRepository;
+     private final JpaMemberInfoRepository jpaMemberInfoRepository;
 
     @GetMapping("/scheduleView")
     public ResponseEntity<?> checkSession(HttpSession session){ /// 로그인 여부 및 로그인 정보 받아옴
@@ -36,14 +41,16 @@ public class ScheduleViewController {
 
     @GetMapping("/scheduleview/{year}/{month}")
     public ResponseEntity<?> returnViewList(@PathVariable int year, @PathVariable int month){
-        List<ScheduleViewInfo> result=viewRepository.findByYear_Month(year,month);
+//        List<ScheduleViewInfo> result=viewRepository.findByYear_Month(year,month);
+        List<ScheduleViewInfo> result = jpaScheduleViewRepository.findByApplyDateYearAndMonth(year, month);
         log.info("스케줄 view 정보 전달 : {}-{}",year,month);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/member/all")
     public ResponseEntity<?> returnAllMember() {
-        List<MemberInfo> info=memberRepository.findAll();
+//        List<MemberInfo> info=memberRepository.findAll();
+        List<MemberInfo> info = jpaMemberInfoRepository.findAll();
         for(MemberInfo candidate : info){
             candidate.setPassword("");
         }
@@ -59,7 +66,8 @@ public class ScheduleViewController {
         Integer userNumber=list.get(0).getUserNumber();
         String userName=null;
         if(userNumber!=null){
-            Optional<MemberInfo> optionalMember=memberRepository.findById(userNumber);
+//            Optional<MemberInfo> optionalMember=memberRepository.findById(userNumber);
+            Optional<MemberInfo> optionalMember = jpaMemberInfoRepository.findById(userNumber);
             if(optionalMember.isPresent()){
                 userName=optionalMember.get().getUsername();
             } else{
@@ -71,17 +79,19 @@ public class ScheduleViewController {
         String finalUserName=userName;
         list.forEach(info->info.setUserName(finalUserName));
 
-        viewRepository.saveAll(list);  // 한 번에 처리
+//        viewRepository.saveAll(list);  // 한 번에 처리
+        jpaScheduleViewRepository.saveAll(list);
         return ResponseEntity.ok("스케줄이 정상적으로 저장되었습니다");
     }
 
     @DeleteMapping("/scheduleview/{id}")
     public ResponseEntity<?> deleteSchedule(@PathVariable long id) {
-        ScheduleViewInfo byScheduleId = viewRepository.findByScheduleId(id);
-        if (byScheduleId == null) {
+//        ScheduleViewInfo byScheduleId = viewRepository.findByScheduleId(id);
+        Optional<ScheduleViewInfo> byScheduleId = jpaScheduleViewRepository.findById(id);
+        if (byScheduleId.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 id를 찾지 못했습니다");
         }
-        viewRepository.delete(byScheduleId);
+        jpaScheduleViewRepository.deleteById(id);
         return ResponseEntity.ok("해당 스케줄 삭제 완료");
     }
 }

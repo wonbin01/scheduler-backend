@@ -19,7 +19,7 @@ public class ScheduleApplyInfo {
     private String etc;              // 기타
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long applyId;            //신청 아이디 지정
     private LocalDateTime createAt;      //신청 누른 시각
     private boolean updatedAt;       // 수정된 건지 여부 확인용

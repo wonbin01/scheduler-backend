@@ -1,5 +1,6 @@
 package wonbin.scheduler.Repository.Schedule;
 
+import org.springframework.stereotype.Repository;
 import wonbin.scheduler.Entity.Schedule.AllowedDate;
 
 import java.util.List;
