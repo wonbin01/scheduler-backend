@@ -10,6 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface JpaAllowedDateRepository extends JpaRepository<AllowedDate,Long> {
-    long deleteByDate(String date);
     Optional<AllowedDate> findByDate(String date);
 }
