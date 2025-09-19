@@ -35,33 +35,36 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
             scheduleviewInfo.setUserNumber(rs.getInt("user_number"));
             scheduleviewInfo.setPosition(rs.getString("position"));
             scheduleviewInfo.setApplyDate(rs.getTimestamp("apply_date").toLocalDateTime().toLocalDate());
-            scheduleviewInfo.setUserName(rs.getString("user_name"));
             scheduleviewInfo.setStartTime(rs.getTime("start_time").toLocalTime());
             scheduleviewInfo.setEndTime(rs.getTime("end_time").toLocalTime());
             scheduleviewInfo.setScheduleEventId(rs.getLong("schedule_event_id"));
+            scheduleviewInfo.setUserName(rs.getString("username"));
             return scheduleviewInfo;
         }
     }
     @Override
     public List<ScheduleViewInfo> findByYear_Month(int year, int month) {
-        String sql = "SELECT user_number,position,apply_date,user_name,start_time,end_time,schedule_event_id" +
-                " FROM view_info WHERE YEAR(apply_date)=? AND MONTH(apply_date)=?";
+        String sql = "SELECT " +
+                "v.user_number, v.position, v.apply_date, m.username, v.start_time, v.end_time, v.schedule_event_id " +
+                "FROM view_info v " +
+                "JOIN member_info m ON m.usernumber = v.user_number " +
+                "WHERE YEAR(v.apply_date) = ? AND MONTH(v.apply_date) = ?";
         List<ScheduleViewInfo> schedules = jdbcTemplate.query(sql, viewInfoRowMapper, year, month);
         return schedules;
     }
 
     @Override
     public void save(ScheduleViewInfo info) {
-        String sql="INSERT INTO view_info (user_number,position,apply_date,user_name,start_time,end_time) VALUES (?,?,?,?,?,?)";
+        String sql="INSERT INTO view_info (user_number,position,apply_date,start_time,end_time) VALUES (?,?,?,?,?)";
         KeyHolder keyHolder=new GeneratedKeyHolder();
         jdbcTemplate.update(connection->{
             PreparedStatement ps=connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,info.getUserNumber());
             ps.setString(2,info.getPosition());
             ps.setTimestamp(3, Timestamp.valueOf(info.getApplyDate().atStartOfDay()));
-            ps.setString(4,info.getUserName());
-            ps.setTime(5, Time.valueOf(info.getStartTime()));
-            ps.setTime(6,Time.valueOf(info.getEndTime()));
+//            ps.setString(4,info.getUserName());
+            ps.setTime(4, Time.valueOf(info.getStartTime()));
+            ps.setTime(5,Time.valueOf(info.getEndTime()));
             return ps;
         },keyHolder);
         if(keyHolder.getKey()!=null){
@@ -78,11 +81,15 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
 
     @Override
     public ScheduleViewInfo findByScheduleId(long id) {
-        String sql="SELECT * FROM view_info WHERE schedule_event_id=?";
-        try{
-            return jdbcTemplate.queryForObject(sql,viewInfoRowMapper,id);
-        } catch (EmptyResultDataAccessException e){
-            log.info("해당 scheduleEventId를 찾을 수 없습니다. scheduleEventId={}",id);
+        String sql = "SELECT v.user_number, v.position, v.apply_date, " +
+                "m.username, v.start_time, v.end_time, v.schedule_event_id " +
+                "FROM view_info v " +
+                "JOIN member_info m ON m.usernumber = v.user_number " +
+                "WHERE v.schedule_event_id = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, viewInfoRowMapper, id);
+        } catch (EmptyResultDataAccessException e) {
+            log.info("해당 scheduleEventId를 찾을 수 없습니다. scheduleEventId={}", id);
             return null;
         }
     }
