@@ -32,26 +32,27 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
         @Override
         public ScheduleViewInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
             ScheduleViewInfo scheduleviewInfo=new ScheduleViewInfo();
-            scheduleviewInfo.setUserNumber(rs.getInt("userNumber"));
+            scheduleviewInfo.setUserNumber(rs.getInt("user_number"));
             scheduleviewInfo.setPosition(rs.getString("position"));
-            scheduleviewInfo.setApplyDate(rs.getTimestamp("applyDate").toLocalDateTime().toLocalDate());
-            scheduleviewInfo.setUserName(rs.getString("userName"));
-            scheduleviewInfo.setStartTime(rs.getTime("startTime").toLocalTime());
-            scheduleviewInfo.setEndTime(rs.getTime("endTime").toLocalTime());
-            scheduleviewInfo.setScheduleEventId(rs.getLong("scheduleEventId"));
+            scheduleviewInfo.setApplyDate(rs.getTimestamp("apply_date").toLocalDateTime().toLocalDate());
+            scheduleviewInfo.setUserName(rs.getString("user_name"));
+            scheduleviewInfo.setStartTime(rs.getTime("start_time").toLocalTime());
+            scheduleviewInfo.setEndTime(rs.getTime("end_time").toLocalTime());
+            scheduleviewInfo.setScheduleEventId(rs.getLong("schedule_event_id"));
             return scheduleviewInfo;
         }
     }
     @Override
     public List<ScheduleViewInfo> findByYear_Month(int year, int month) {
-        String sql = "SELECT userNumber,position,applydate,userName,startTime,endTime,scheduleEventId FROM view_info WHERE YEAR(applyDate)=? AND MONTH(applyDate)=?";
+        String sql = "SELECT user_number,position,apply_date,user_name,start_time,end_time,schedule_event_id" +
+                " FROM view_info WHERE YEAR(apply_date)=? AND MONTH(apply_date)=?";
         List<ScheduleViewInfo> schedules = jdbcTemplate.query(sql, viewInfoRowMapper, year, month);
         return schedules;
     }
 
     @Override
     public void save(ScheduleViewInfo info) {
-        String sql="INSERT INTO view_info (userNumber,position,applyDate,userName,startTime,endTime) VALUES (?,?,?,?,?,?)";
+        String sql="INSERT INTO view_info (user_number,position,apply_date,user_name,start_time,end_time) VALUES (?,?,?,?,?,?)";
         KeyHolder keyHolder=new GeneratedKeyHolder();
         jdbcTemplate.update(connection->{
             PreparedStatement ps=connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -77,7 +78,7 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
 
     @Override
     public ScheduleViewInfo findByScheduleId(long id) {
-        String sql="SELECT * FROM view_info WHERE scheduleEventId=?";
+        String sql="SELECT * FROM view_info WHERE schedule_event_id=?";
         try{
             return jdbcTemplate.queryForObject(sql,viewInfoRowMapper,id);
         } catch (EmptyResultDataAccessException e){
@@ -88,7 +89,7 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
 
     @Override
     public void delete(ScheduleViewInfo info) {
-        String sql="DELETE FROM view_info WHERE scheduleEventId=?";
+        String sql="DELETE FROM view_info WHERE schedule_event_id=?";
         int affectedRow=jdbcTemplate.update(sql,info.getScheduleEventId());
         if(affectedRow>0){
             log.info("삭제 성공 scheduleEventId={}",info.getScheduleEventId());

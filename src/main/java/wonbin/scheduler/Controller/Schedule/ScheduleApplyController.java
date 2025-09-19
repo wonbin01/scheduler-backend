@@ -95,13 +95,11 @@ public class ScheduleApplyController {
         log.info("해당 날짜 삭제 완료 date={}",date);
         return ResponseEntity.ok("해당 날짜 삭제 완료 date={}");
     }
+
     @PostMapping("/allowed-dates/bulk")
-    public ResponseEntity<?> saveAllowedDates(@RequestBody List<String> dates) {
+    public ResponseEntity<Boolean> saveAllowedDates(@RequestBody List<String> dates) {
         boolean success = allowedDateRepository.saveAllowedDate(dates);
-        if (!success) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("저장 실패");
-        }
-        return ResponseEntity.ok("저장 성공");
+        return ResponseEntity.ok(success); // true=중복 없음, false=중복 있음
     }
 
 }

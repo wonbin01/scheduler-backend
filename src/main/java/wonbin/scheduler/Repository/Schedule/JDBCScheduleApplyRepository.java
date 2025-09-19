@@ -30,21 +30,21 @@ public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{
             ScheduleApplyInfo scheduleApplyInfo=new ScheduleApplyInfo();
             scheduleApplyInfo.setUsernumber(rs.getInt("usernumber"));
             scheduleApplyInfo.setUsername(rs.getString("username"));
-            scheduleApplyInfo.setTimeSlot(rs.getString("timeslot"));
-            scheduleApplyInfo.setApplyDate(rs.getTimestamp("applydate").toLocalDateTime().toLocalDate());
+            scheduleApplyInfo.setTimeSlot(rs.getString("time_slot"));
+            scheduleApplyInfo.setApplyDate(rs.getTimestamp("apply_date").toLocalDateTime().toLocalDate());
             scheduleApplyInfo.setReason(rs.getString("reason"));
-            scheduleApplyInfo.setAlternativePlan(rs.getString("alternativePlan"));
+            scheduleApplyInfo.setAlternativePlan(rs.getString("alternative_plan"));
             scheduleApplyInfo.setEtc(rs.getString("etc"));
-            scheduleApplyInfo.setCreateAt(rs.getTimestamp("createdAt").toLocalDateTime());
-            scheduleApplyInfo.setUpdatedAt(rs.getBoolean("updatedAt"));
-            scheduleApplyInfo.setApplyId(rs.getLong("applyId"));
+            scheduleApplyInfo.setCreateAt(rs.getTimestamp("create_at").toLocalDateTime());
+            scheduleApplyInfo.setUpdatedAt(rs.getBoolean("updated_at"));
+            scheduleApplyInfo.setApplyId(rs.getLong("apply_id"));
             return scheduleApplyInfo;
         }
     }
 
     @Override
     public void save(ScheduleApplyInfo info) {
-        String sql="INSERT INTO apply_info (usernumber,username,timeslot,applydate,reason,alternativePlan,etc,createdAt,updatedAt) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO apply_info (usernumber,username,time_slot,apply_date,reason,alternative_plan,etc,create_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder=new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection ->{
@@ -67,13 +67,13 @@ public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{
 
     @Override
     public List<ScheduleApplyInfo> findApplyUseMonth(int year, int month) {
-        String sql="SELECT * FROM apply_info WHERE YEAR(applydate)=? AND MONTH(applydate)=?";
+        String sql="SELECT * FROM apply_info WHERE YEAR(apply_date)=? AND MONTH(apply_date)=?";
         return jdbcTemplate.query(sql,applyInfoRowMapper,year,month);
     }
 
     @Override
     public void delete(long applyId) {
-        String sql="DELETE FROM apply_info WHERE applyId=?";
+        String sql="DELETE FROM apply_info WHERE apply_id=?";
         int affectedRow=jdbcTemplate.update(sql,applyId);
         if(affectedRow>0){
             log.info("삭제 성공 applyId={}",applyId);
@@ -85,7 +85,7 @@ public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{
 
     @Override
     public ScheduleApplyInfo findByApplyId(long applyId) {
-        String sql = "SELECT applyId, usernumber, username, timeslot, applydate, reason, alternativePlan, etc, createdAt, updatedAt FROM apply_info WHERE applyId = ?";
+        String sql = "SELECT applyId, usernumber, username, time_slot, apply_date, reason, alternative_plan, etc, create_at, updated_at FROM apply_info WHERE apply_id = ?";
         try {
             return jdbcTemplate.queryForObject(sql, applyInfoRowMapper, applyId);
         } catch (EmptyResultDataAccessException e) {
@@ -96,7 +96,7 @@ public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{
 
     @Override
     public void update(ScheduleApplyInfo info) {
-        String sql = "UPDATE apply_info SET usernumber = ?, username = ?, timeslot = ?, applydate = ?, reason = ?, alternativePlan = ?, etc = ?, updatedAt = ? WHERE applyId = ?";
+        String sql = "UPDATE apply_info SET usernumber = ?, username = ?, time_slot = ?, apply_date = ?, reason = ?, alternative_plan = ?, etc = ?, updated_at = ? WHERE apply_id = ?";
 
         // update 메서드는 영향받은 행의 수를 반환하지만, 여기서는 void 타입이므로 반환값을 무시합니다.
         jdbcTemplate.update(sql,

@@ -39,7 +39,7 @@ public class JDBCAllowedDateRepository implements AllowedDateRepository{
 
     @Override
     public boolean saveAllowedDate(List<String> dates) {
-        String sql="INSERT IGNORE INTO allowed_date (date) VALUES (?)";
+        String sql = "INSERT IGNORE INTO allowed_date (date) VALUES (?)";
         int[] result= jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
@@ -51,9 +51,13 @@ public class JDBCAllowedDateRepository implements AllowedDateRepository{
                 return dates.size();
             }
         });
-        for(int res : result){
-            if(res==0) return false;
+        boolean hasDuplicate = false;
+        for (int res : result) {
+            if (res == 0) {
+                hasDuplicate = true;
+                break;
+            }
         }
-        return true;
+        return !hasDuplicate;
     }
 }
