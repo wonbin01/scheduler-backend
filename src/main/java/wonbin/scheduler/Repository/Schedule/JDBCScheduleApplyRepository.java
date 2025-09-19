@@ -44,20 +44,21 @@ public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{
 
     @Override
     public void save(ScheduleApplyInfo info) {
-        String sql="INSERT INTO apply_info (usernumber,username,time_slot,apply_date,reason,alternative_plan,etc,create_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO apply_info " +
+                "(usernumber,time_slot,apply_date,reason,alternative_plan,etc,create_at,updated_at) VALUES (?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder=new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection ->{
             PreparedStatement ps=connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,info.getUsernumber());
-            ps.setString(2,info.getUsername());
-            ps.setString(3,info.getTimeSlot());
-            ps.setTimestamp(4,Timestamp.valueOf(info.getApplyDate().atStartOfDay()));
-            ps.setString(5,info.getReason());
-            ps.setString(6,info.getAlternativePlan());
-            ps.setString(7,info.getEtc());
-            ps.setTimestamp(8,Timestamp.valueOf(LocalDateTime.now()));
-            ps.setBoolean(9,false);
+//            ps.setString(2,info.getUsername());
+            ps.setString(2,info.getTimeSlot());
+            ps.setTimestamp(3,Timestamp.valueOf(info.getApplyDate().atStartOfDay()));
+            ps.setString(4,info.getReason());
+            ps.setString(5,info.getAlternativePlan());
+            ps.setString(6,info.getEtc());
+            ps.setTimestamp(7,Timestamp.valueOf(LocalDateTime.now()));
+            ps.setBoolean(8,false);
             return ps;
         },keyHolder);
         if(keyHolder.getKey()!=null){
@@ -67,8 +68,13 @@ public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{
 
     @Override
     public List<ScheduleApplyInfo> findApplyUseMonth(int year, int month) {
-        String sql="SELECT * FROM apply_info WHERE YEAR(apply_date)=? AND MONTH(apply_date)=?";
-        return jdbcTemplate.query(sql,applyInfoRowMapper,year,month);
+        String sql = "SELECT a.apply_id, a.usernumber, m.username, a.time_slot, a.apply_date, " +
+                "a.reason, a.alternative_plan, a.etc, a.create_at, a.updated_at " +
+                "FROM apply_info a " +
+                "JOIN member_info m ON a.usernumber = m.usernumber " +
+                "WHERE YEAR(a.apply_date) = ? AND MONTH(a.apply_date) = ?";
+
+        return jdbcTemplate.query(sql, applyInfoRowMapper, year, month);
     }
 
     @Override
@@ -85,7 +91,10 @@ public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{
 
     @Override
     public ScheduleApplyInfo findByApplyId(long applyId) {
-        String sql = "SELECT applyId, usernumber, username, time_slot, apply_date, reason, alternative_plan, etc, create_at, updated_at FROM apply_info WHERE apply_id = ?";
+        String sql = "SELECT a.applyId, a.usernumber, m.username, a.time_slot, a.apply_date, a.reason, a.alternative_plan, a.etc, a.create_at, a.updated_at " +
+                "FROM apply_info a " +
+                "join member_info m on a.usernumber=m.usernumber " +
+                "WHERE apply_id = ? ";
         try {
             return jdbcTemplate.queryForObject(sql, applyInfoRowMapper, applyId);
         } catch (EmptyResultDataAccessException e) {
@@ -96,12 +105,11 @@ public class JDBCScheduleApplyRepository implements ScheduleApplyRepository{
 
     @Override
     public void update(ScheduleApplyInfo info) {
-        String sql = "UPDATE apply_info SET usernumber = ?, username = ?, time_slot = ?, apply_date = ?, reason = ?, alternative_plan = ?, etc = ?, updated_at = ? WHERE apply_id = ?";
+        String sql = "UPDATE apply_info SET usernumber = ?, time_slot = ?, apply_date = ?, reason = ?, alternative_plan = ?, etc = ?, updated_at = ? WHERE apply_id = ?";
 
         // update 메서드는 영향받은 행의 수를 반환하지만, 여기서는 void 타입이므로 반환값을 무시합니다.
         jdbcTemplate.update(sql,
                 info.getUsernumber(),
-                info.getUsername(),
                 info.getTimeSlot(),
                 // applyDate (LocalDate)를 Timestamp로 변환
                 Timestamp.valueOf(info.getApplyDate().atStartOfDay()),
