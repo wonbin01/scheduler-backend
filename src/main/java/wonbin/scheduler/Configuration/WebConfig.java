@@ -2,8 +2,11 @@ package wonbin.scheduler.Configuration;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.core.io.Resource;
@@ -80,5 +83,10 @@ public class WebConfig  implements WebMvcConfigurer {
                     }
                 });
     }
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
+    }
+
 
 }

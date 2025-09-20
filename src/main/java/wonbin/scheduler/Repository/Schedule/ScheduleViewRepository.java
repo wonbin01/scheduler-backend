@@ -11,4 +11,5 @@ public interface ScheduleViewRepository {
     public void saveAll(List<ScheduleViewInfo> infoList);
     public ScheduleViewInfo findByScheduleId(long id);
     public void delete(ScheduleViewInfo info);
+    public List<ScheduleViewInfo> findByUsernumberYearMonth(int usernumber,int year,int month);
 }

@@ -37,6 +37,11 @@ public class MemoryScheduleViewRepository implements ScheduleViewRepository{
         }
     }
 
+    @Override
+    public List<ScheduleViewInfo> findByUsernumberYearMonth(int usernumber, int year, int month) {
+        return List.of();
+    }
+
 
     @Override
     public ScheduleViewInfo findByScheduleId(long id) {

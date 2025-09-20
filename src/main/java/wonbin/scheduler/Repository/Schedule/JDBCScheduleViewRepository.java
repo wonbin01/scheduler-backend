@@ -104,4 +104,16 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
             log.info("삭제 성공 scheduleEvnetId={}",info.getScheduleEventId());
         }
     }
+
+    @Override
+    public List<ScheduleViewInfo> findByUsernumberYearMonth(int usernumber, int year, int month) {
+        String sql = "SELECT v.user_number, v.position, v.apply_date, " +
+                "m.username, v.start_time, v.end_time, v.schedule_event_id " +
+                "FROM view_info v " +
+                "JOIN member_info m ON m.usernumber = v.user_number " +
+                "WHERE v.user_number = ? AND YEAR(v.apply_date) = ? AND MONTH(v.apply_date) = ?";
+
+        List<ScheduleViewInfo> schedules = jdbcTemplate.query(sql, viewInfoRowMapper, usernumber, year, month);
+        return schedules;
+    }
 }
