@@ -1,137 +1,60 @@
-2025-09-21T00:02:20.827+09:00  INFO 18760 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 18760 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T00:02:20.832+09:00  INFO 18760 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T00:02:21.837+09:00  INFO 18760 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T00:02:21.873+09:00  INFO 18760 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26 ms. Found 0 JDBC repository interfaces.
-2025-09-21T00:02:22.609+09:00  INFO 18760 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T00:02:22.622+09:00  INFO 18760 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T00:02:22.623+09:00  INFO 18760 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T00:02:22.692+09:00  INFO 18760 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T00:02:22.693+09:00  INFO 18760 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1773 ms
-2025-09-21T00:02:23.130+09:00  INFO 18760 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T00:02:23.565+09:00  INFO 18760 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T00:02:32.525+09:00  INFO 10680 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 10680 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T00:02:32.529+09:00  INFO 10680 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T00:02:33.350+09:00  INFO 10680 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T00:02:33.396+09:00  INFO 10680 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 0 JDBC repository interfaces.
-2025-09-21T00:02:34.184+09:00  INFO 10680 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T00:02:34.198+09:00  INFO 10680 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T00:02:34.198+09:00  INFO 10680 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T00:02:34.286+09:00  INFO 10680 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T00:02:34.286+09:00  INFO 10680 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1695 ms
-2025-09-21T00:02:34.713+09:00  INFO 10680 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T00:02:35.125+09:00  INFO 10680 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T00:02:35.456+09:00  INFO 10680 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@64279ab
-2025-09-21T00:02:35.458+09:00  INFO 10680 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T00:02:35.836+09:00  INFO 10680 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T00:02:35.849+09:00  INFO 10680 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.979 seconds (process running for 4.315)
-2025-09-21T00:02:52.071+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T00:02:52.071+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T00:02:52.072+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-21T00:02:52.290+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T00:02:52.290+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T00:02:52.340+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T00:02:52.377+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:05:31.823+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:05:36.013+09:00  INFO 10680 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
-2025-09-21T00:49:10.156+09:00  INFO 20468 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 20468 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T00:49:10.160+09:00  INFO 20468 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T00:49:10.906+09:00  INFO 20468 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T00:49:10.948+09:00  INFO 20468 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 0 JDBC repository interfaces.
-2025-09-21T00:49:11.510+09:00  INFO 20468 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T00:49:11.526+09:00  INFO 20468 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T00:49:11.527+09:00  INFO 20468 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T00:49:11.587+09:00  INFO 20468 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T00:49:11.588+09:00  INFO 20468 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1358 ms
-2025-09-21T00:49:11.896+09:00  INFO 20468 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T00:49:12.207+09:00  INFO 20468 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T00:49:12.503+09:00  INFO 20468 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@111cba40
-2025-09-21T00:49:12.505+09:00  INFO 20468 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T00:49:12.793+09:00  INFO 20468 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T00:49:12.803+09:00  INFO 20468 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.135 seconds (process running for 3.424)
-2025-09-21T00:49:38.037+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T00:49:38.037+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T00:49:38.038+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-09-21T00:49:38.234+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 요청 : 1
-2025-09-21T00:49:38.234+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : MemberId=1 , Password=1
-2025-09-21T00:49:38.272+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 성공:1
-2025-09-21T00:49:38.302+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:49:40.738+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
-2025-09-21T00:49:58.923+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:49:59.351+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-5] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleView
-2025-09-21T00:49:59.353+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-5] w.s.C.Schedule.ScheduleViewController    : 로그인 여부 확인
-2025-09-21T00:49:59.655+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-6] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/member/all
-2025-09-21T00:49:59.675+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-7] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/9
-2025-09-21T00:49:59.683+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-7] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-9
-2025-09-21T00:50:01.479+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-8] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/8
-2025-09-21T00:50:01.483+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-8] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-8
-2025-09-21T00:50:04.388+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-9] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/9
-2025-09-21T00:50:04.391+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-9] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-9
-2025-09-21T00:50:17.847+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-10] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/8
-2025-09-21T00:50:17.850+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-10] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-8
-2025-09-21T00:50:18.693+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:50:20.160+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:50:21.110+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
-2025-09-21T00:50:37.273+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/logout
-2025-09-21T00:50:37.273+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-4] w.scheduler.Controller.LoginController   : 로그아웃
-2025-09-21T00:50:39.773+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-5] w.scheduler.Controller.LoginController   : 로그인 요청 : 2
-2025-09-21T00:50:39.773+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-5] w.scheduler.Controller.LoginController   : MemberId=2 , Password=2
-2025-09-21T00:50:39.776+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-5] w.scheduler.Controller.LoginController   : 로그인 성공:2
-2025-09-21T00:50:40.108+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-6] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:50:40.875+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-7] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:50:41.628+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-8] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleView
-2025-09-21T00:50:41.630+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-8] w.s.C.Schedule.ScheduleViewController    : 로그인 여부 확인
-2025-09-21T00:50:41.630+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-9] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/member/all
-2025-09-21T00:50:41.893+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-10] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/9
-2025-09-21T00:50:41.895+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-10] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-9
-2025-09-21T00:50:42.473+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/8
-2025-09-21T00:50:42.477+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-8
-2025-09-21T00:50:45.030+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:50:45.295+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:50:46.119+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
-2025-09-21T00:50:58.406+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-5] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/logout
-2025-09-21T00:50:58.407+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-5] w.scheduler.Controller.LoginController   : 로그아웃
-2025-09-21T00:51:02.412+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-6] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T00:51:02.413+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-6] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T00:51:02.415+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-6] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T00:51:02.730+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-7] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:51:03.475+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-8] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:51:04.446+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-9] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleView
-2025-09-21T00:51:04.446+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-10] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/member/all
-2025-09-21T00:51:04.447+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-9] w.s.C.Schedule.ScheduleViewController    : 로그인 여부 확인
-2025-09-21T00:51:04.709+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/9
-2025-09-21T00:51:04.712+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-1] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-9
-2025-09-21T00:51:06.428+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/8
-2025-09-21T00:51:06.431+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-2] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-8
-2025-09-21T00:51:10.755+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/scheduleview/2025/9
-2025-09-21T00:51:10.758+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-3] w.s.C.Schedule.ScheduleViewController    : 스케줄 view 정보 전달 : 2025-9
-2025-09-21T00:51:17.334+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:51:18.214+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-5] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T00:51:19.149+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-6] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
-2025-09-21T00:51:32.764+09:00  INFO 20468 --- [scheduler] [http-nio-8080-exec-7] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T01:11:27.524+09:00  INFO 16432 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 16432 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T01:11:27.528+09:00  INFO 16432 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T01:11:28.300+09:00  INFO 16432 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T01:11:28.338+09:00  INFO 16432 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 0 JDBC repository interfaces.
-2025-09-21T01:11:28.901+09:00  INFO 16432 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T01:11:28.921+09:00  INFO 16432 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T01:11:28.921+09:00  INFO 16432 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T01:11:28.986+09:00  INFO 16432 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T01:11:28.987+09:00  INFO 16432 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1402 ms
-2025-09-21T01:11:29.608+09:00  INFO 16432 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T01:11:29.887+09:00  INFO 16432 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T01:11:30.208+09:00  INFO 16432 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@19526f1d
-2025-09-21T01:11:30.210+09:00  INFO 16432 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T01:11:30.500+09:00  INFO 16432 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T01:11:30.511+09:00  INFO 16432 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.544 seconds (process running for 3.853)
-2025-09-21T01:11:36.425+09:00  INFO 16432 --- [scheduler] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T01:11:36.425+09:00  INFO 16432 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T01:11:36.426+09:00  INFO 16432 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-21T01:11:36.568+09:00  INFO 16432 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T01:11:36.568+09:00  INFO 16432 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T01:11:36.589+09:00  INFO 16432 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T01:11:36.927+09:00  INFO 16432 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T01:11:37.885+09:00  INFO 16432 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
-2025-09-21T01:11:39.029+09:00 ERROR 16432 --- [scheduler] [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://calculator-service:8000/calculate": null] with root cause
+2025-09-22T03:32:23.129+09:00  INFO 14144 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 14144 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
+2025-09-22T03:32:23.152+09:00  INFO 14144 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-09-22T03:32:24.214+09:00  INFO 14144 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-09-22T03:32:24.272+09:00  INFO 14144 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 0 JDBC repository interfaces.
+2025-09-22T03:32:25.013+09:00  INFO 14144 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-22T03:32:25.025+09:00  INFO 14144 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-22T03:32:25.025+09:00  INFO 14144 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-09-22T03:32:25.079+09:00  INFO 14144 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-22T03:32:25.079+09:00  INFO 14144 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1860 ms
+2025-09-22T03:32:25.745+09:00  INFO 14144 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-09-22T03:32:26.066+09:00  INFO 14144 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-22T03:32:26.378+09:00  INFO 14144 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6568f998
+2025-09-22T03:32:26.385+09:00  INFO 14144 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-22T03:32:26.690+09:00  WARN 14144 --- [scheduler] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-09-22T03:32:26.693+09:00  INFO 14144 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-22T03:32:26.743+09:00  INFO 14144 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-22T03:32:26.757+09:00  INFO 14144 --- [scheduler] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-22T03:32:26.790+09:00 ERROR 14144 --- [scheduler] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-09-22T15:24:09.284+09:00  INFO 15348 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 15348 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
+2025-09-22T15:24:09.288+09:00  INFO 15348 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-09-22T15:24:10.197+09:00  INFO 15348 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-09-22T15:24:10.243+09:00  INFO 15348 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 0 JDBC repository interfaces.
+2025-09-22T15:24:10.934+09:00  INFO 15348 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-22T15:24:10.948+09:00  INFO 15348 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-22T15:24:10.948+09:00  INFO 15348 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-09-22T15:24:11.014+09:00  INFO 15348 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-22T15:24:11.014+09:00  INFO 15348 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1649 ms
+2025-09-22T15:24:11.869+09:00  INFO 15348 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-09-22T15:24:12.243+09:00  INFO 15348 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-22T15:24:12.582+09:00  INFO 15348 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@40a1b6d4
+2025-09-22T15:24:12.585+09:00  INFO 15348 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-22T15:24:12.894+09:00  INFO 15348 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-22T15:24:12.908+09:00  INFO 15348 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 4.222 seconds (process running for 4.561)
+2025-09-22T15:24:28.573+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-22T15:24:28.573+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-22T15:24:28.574+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-22T15:24:28.742+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
+2025-09-22T15:24:28.742+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
+2025-09-22T15:24:28.794+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
+2025-09-22T15:24:28.825+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
+2025-09-22T15:24:34.504+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
+2025-09-22T15:24:35.625+09:00 ERROR 15348 --- [scheduler] [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://calculator-service:8000/calculate": null] with root cause
 
 java.nio.channels.UnresolvedAddressException: null
 	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149) ~[na:na]
@@ -165,521 +88,152 @@ java.nio.channels.UnresolvedAddressException: null
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
 	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
 
-2025-09-21T14:13:11.880+09:00  INFO 9948 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 9948 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T14:13:11.885+09:00  INFO 9948 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T14:13:12.805+09:00  INFO 9948 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T14:13:12.839+09:00  INFO 9948 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 JDBC repository interfaces.
-2025-09-21T14:13:13.498+09:00  INFO 9948 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T14:13:13.515+09:00  INFO 9948 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T14:13:13.515+09:00  INFO 9948 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T14:13:13.577+09:00  INFO 9948 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T14:13:13.578+09:00  INFO 9948 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1613 ms
-2025-09-21T14:13:14.335+09:00  INFO 9948 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T14:13:14.657+09:00  INFO 9948 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T14:13:15.059+09:00  INFO 9948 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1304e0d7
-2025-09-21T14:13:15.061+09:00  INFO 9948 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T14:13:15.390+09:00  INFO 9948 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T14:13:15.401+09:00  INFO 9948 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 4.125 seconds (process running for 4.454)
-2025-09-21T14:13:17.786+09:00  INFO 9948 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T14:13:17.786+09:00  INFO 9948 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T14:13:17.787+09:00  INFO 9948 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-21T14:13:18.019+09:00  INFO 9948 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T14:13:18.020+09:00  INFO 9948 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T14:13:18.080+09:00  INFO 9948 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T14:13:18.115+09:00  INFO 9948 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T14:13:20.537+09:00  INFO 9948 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T14:36:06.218+09:00  INFO 1008 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 1008 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T14:36:06.222+09:00  INFO 1008 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T14:36:06.990+09:00  INFO 1008 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T14:36:07.030+09:00  INFO 1008 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
-2025-09-21T14:36:07.588+09:00  INFO 1008 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T14:36:07.603+09:00  INFO 1008 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T14:36:07.604+09:00  INFO 1008 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T14:36:07.659+09:00  INFO 1008 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T14:36:07.660+09:00  INFO 1008 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1387 ms
-2025-09-21T14:36:08.300+09:00  INFO 1008 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T14:36:08.578+09:00  INFO 1008 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T14:36:08.847+09:00  INFO 1008 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4dd2ef54
-2025-09-21T14:36:08.849+09:00  INFO 1008 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T14:36:09.116+09:00  INFO 1008 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T14:36:09.128+09:00  INFO 1008 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.368 seconds (process running for 3.653)
-2025-09-21T14:36:15.348+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T14:36:15.349+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T14:36:15.350+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-21T14:36:15.369+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T14:36:15.370+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/home
-2025-09-21T14:36:19.578+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-3] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T14:36:19.579+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-3] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T14:36:19.618+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-3] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T14:36:19.630+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T14:36:20.999+09:00  INFO 1008 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T14:45:05.686+09:00  INFO 16088 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 16088 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T14:45:05.693+09:00  INFO 16088 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T14:45:06.590+09:00  INFO 16088 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T14:45:06.634+09:00  INFO 16088 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 0 JDBC repository interfaces.
-2025-09-21T14:45:07.293+09:00  INFO 16088 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T14:45:07.304+09:00  INFO 16088 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T14:45:07.305+09:00  INFO 16088 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T14:45:07.359+09:00  INFO 16088 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T14:45:07.360+09:00  INFO 16088 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1612 ms
-2025-09-21T14:45:08.102+09:00  INFO 16088 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T14:45:08.487+09:00  INFO 16088 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T14:45:08.874+09:00  INFO 16088 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1068176
-2025-09-21T14:45:08.876+09:00  INFO 16088 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T14:45:09.288+09:00  INFO 16088 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T14:45:09.302+09:00  INFO 16088 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 4.243 seconds (process running for 4.685)
-2025-09-21T14:45:18.208+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T14:45:18.208+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T14:45:18.209+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-09-21T14:45:18.229+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T14:45:18.230+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/home
-2025-09-21T14:45:22.070+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T14:45:22.070+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T14:45:22.097+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T14:45:22.112+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T14:45:23.793+09:00  INFO 16088 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T14:49:20.362+09:00  INFO 17232 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 17232 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T14:49:20.366+09:00  INFO 17232 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T14:49:21.306+09:00  INFO 17232 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T14:49:21.350+09:00  INFO 17232 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 0 JDBC repository interfaces.
-2025-09-21T14:49:22.038+09:00  INFO 17232 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T14:49:22.053+09:00  INFO 17232 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T14:49:22.053+09:00  INFO 17232 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T14:49:22.099+09:00  INFO 17232 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T14:49:22.099+09:00  INFO 17232 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1649 ms
-2025-09-21T14:49:22.852+09:00  INFO 17232 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T14:49:23.173+09:00  INFO 17232 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T14:49:23.556+09:00  INFO 17232 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@359ceb13
-2025-09-21T14:49:23.558+09:00  INFO 17232 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T14:49:23.819+09:00  INFO 17232 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T14:49:23.834+09:00  INFO 17232 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 4.048 seconds (process running for 4.484)
-2025-09-21T14:49:36.071+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T14:49:36.071+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T14:49:36.072+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-21T14:49:36.096+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T14:49:36.097+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/home
-2025-09-21T14:49:39.594+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T14:49:39.595+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T14:49:39.642+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-1] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T14:49:39.658+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T14:49:40.987+09:00  INFO 17232 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T15:05:33.997+09:00  INFO 20668 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 20668 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T15:05:34.002+09:00  INFO 20668 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T15:05:34.829+09:00  INFO 20668 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T15:05:34.883+09:00  INFO 20668 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 0 JDBC repository interfaces.
-2025-09-21T15:05:35.556+09:00  INFO 20668 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T15:05:35.568+09:00  INFO 20668 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T15:05:35.568+09:00  INFO 20668 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T15:05:35.624+09:00  INFO 20668 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T15:05:35.625+09:00  INFO 20668 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1567 ms
-2025-09-21T15:05:36.353+09:00  INFO 20668 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T15:05:36.691+09:00  INFO 20668 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T15:05:37.024+09:00  INFO 20668 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ddc67d0
-2025-09-21T15:05:37.026+09:00  INFO 20668 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T15:05:37.310+09:00  INFO 20668 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T15:05:37.319+09:00  INFO 20668 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.914 seconds (process running for 4.361)
-2025-09-21T15:05:44.013+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T15:05:44.014+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T15:05:44.014+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-09-21T15:05:44.041+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T15:05:44.042+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/holidays/update
-2025-09-21T15:05:57.843+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:05:57.844+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/home
-2025-09-21T15:06:01.396+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-3] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T15:06:01.396+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-3] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T15:06:01.424+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-3] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T15:06:01.435+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:06:02.864+09:00  INFO 20668 --- [scheduler] [http-nio-8080-exec-5] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T15:06:03.246+09:00 ERROR 20668 --- [scheduler] [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [Insert into holiday (date,name) values (?,?)]] with root cause
+2025-09-22T15:28:37.833+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
+2025-09-22T15:28:37.833+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-5] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
+2025-09-22T15:28:38.858+09:00 ERROR 15348 --- [scheduler] [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://calculator-service:8000/calculate": null] with root cause
 
-java.sql.SQLSyntaxErrorException: Unknown column 'date' in 'field list'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1168) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1103) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1450) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1086) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-6.3.0.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-6.3.0.jar:na]
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at wonbin.scheduler.Repository.holiday.JDBCholidayRepository.save(JDBCholidayRepository.java:17) ~[main/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.8.jar:6.2.8]
-	at wonbin.scheduler.Repository.holiday.JDBCholidayRepository$$SpringCGLIB$$0.save(<generated>) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.printHoliday(holidayService.java:72) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.fetchAndSaveHolidays(holidayService.java:52) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.updateYearlyHoliday(holidayService.java:25) ~[main/:na]
-	at wonbin.scheduler.Controller.holiday.holidayGetter.holidayUpdate(holidayGetter.java:14) ~[main/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.42.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.42.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+java.nio.channels.UnresolvedAddressException: null
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149) ~[na:na]
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839) ~[na:na]
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183) ~[java.net.http:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569) ~[na:na]
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:525) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:405) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:529) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340) ~[na:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:529) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:381) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:373) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340) ~[na:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
 	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
 
-2025-09-21T15:06:35.979+09:00  INFO 20104 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 20104 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T15:06:35.982+09:00  INFO 20104 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T15:06:36.882+09:00  INFO 20104 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T15:06:36.928+09:00  INFO 20104 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 0 JDBC repository interfaces.
-2025-09-21T15:06:37.597+09:00  INFO 20104 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T15:06:37.607+09:00  INFO 20104 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T15:06:37.608+09:00  INFO 20104 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T15:06:37.663+09:00  INFO 20104 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T15:06:37.664+09:00  INFO 20104 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1599 ms
-2025-09-21T15:06:38.348+09:00  INFO 20104 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T15:06:38.647+09:00  INFO 20104 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T15:06:39.006+09:00  INFO 20104 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1068176
-2025-09-21T15:06:39.008+09:00  INFO 20104 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T15:06:39.289+09:00  INFO 20104 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T15:06:39.300+09:00  INFO 20104 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.823 seconds (process running for 4.129)
-2025-09-21T15:06:44.985+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T15:06:44.985+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T15:06:44.986+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-21T15:06:45.008+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:06:45.009+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/home
-2025-09-21T15:06:48.661+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T15:06:48.662+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T15:06:48.693+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T15:06:48.703+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:06:51.100+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T15:06:51.370+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-01 , 1월1일
-2025-09-21T15:06:51.374+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-27 , 임시공휴일
-2025-09-21T15:06:51.376+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-28 , 설날
-2025-09-21T15:06:51.380+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-29 , 설날
-2025-09-21T15:06:51.383+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-30 , 설날
-2025-09-21T15:06:51.473+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-03-01 , 삼일절
-2025-09-21T15:06:51.476+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-03-03 , 대체공휴일
-2025-09-21T15:06:51.566+09:00  INFO 20104 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-05-05 , 어린이날
-2025-09-21T15:06:51.595+09:00 ERROR 20104 --- [scheduler] [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [Insert into holiday (holidate,name) values (?,?)]; Duplicate entry '2025-05-05' for key 'holiday.PRIMARY'] with root cause
+2025-09-22T15:28:38.858+09:00 ERROR 15348 --- [scheduler] [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://calculator-service:8000/calculate": null] with root cause
 
-java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '2025-05-05' for key 'holiday.PRIMARY'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1168) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1103) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1450) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1086) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-6.3.0.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-6.3.0.jar:na]
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at wonbin.scheduler.Repository.holiday.JDBCholidayRepository.save(JDBCholidayRepository.java:17) ~[main/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.8.jar:6.2.8]
-	at wonbin.scheduler.Repository.holiday.JDBCholidayRepository$$SpringCGLIB$$0.save(<generated>) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.printHoliday(holidayService.java:72) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.fetchAndSaveHolidays(holidayService.java:52) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.updateYearlyHoliday(holidayService.java:25) ~[main/:na]
-	at wonbin.scheduler.Controller.holiday.holidayGetter.holidayUpdate(holidayGetter.java:14) ~[main/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.42.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.42.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+java.nio.channels.UnresolvedAddressException: null
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149) ~[na:na]
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839) ~[na:na]
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183) ~[java.net.http:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569) ~[na:na]
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:525) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:405) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:529) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340) ~[na:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:529) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:381) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:373) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340) ~[na:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
 	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
 
-2025-09-21T15:08:10.145+09:00  INFO 21684 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 21684 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T15:08:10.149+09:00  INFO 21684 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T15:08:11.011+09:00  INFO 21684 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T15:08:11.069+09:00  INFO 21684 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 0 JDBC repository interfaces.
-2025-09-21T15:08:11.691+09:00  INFO 21684 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T15:08:11.701+09:00  INFO 21684 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T15:08:11.702+09:00  INFO 21684 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T15:08:11.756+09:00  INFO 21684 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T15:08:11.757+09:00  INFO 21684 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1546 ms
-2025-09-21T15:08:12.431+09:00  INFO 21684 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T15:08:12.719+09:00  INFO 21684 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T15:08:12.949+09:00  INFO 21684 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@16f15ae9
-2025-09-21T15:08:12.950+09:00  INFO 21684 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T15:08:13.189+09:00  INFO 21684 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T15:08:13.202+09:00  INFO 21684 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.58 seconds (process running for 3.896)
-2025-09-21T15:08:22.972+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T15:08:22.972+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T15:08:22.974+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2025-09-21T15:08:22.999+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:08:22.999+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/home
-2025-09-21T15:08:26.590+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T15:08:26.591+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T15:08:26.617+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-2] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T15:08:26.632+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:08:27.931+09:00  INFO 21684 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T15:08:28.224+09:00 ERROR 21684 --- [scheduler] [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO holiday (date, name) VALUES (?, ?) ON DUPLICATE KEY UPDATE name = VALUES(name)]] with root cause
+2025-09-22T15:29:36.528+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-6] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
+2025-09-22T15:29:40.300+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-7] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
+2025-09-22T15:32:36.729+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-8] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
+2025-09-22T15:32:42.259+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-9] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
+2025-09-22T15:34:19.464+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-10] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
+2025-09-22T15:34:20.490+09:00 ERROR 15348 --- [scheduler] [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://calculator-service:8000/calculate": null] with root cause
 
-java.sql.SQLSyntaxErrorException: Unknown column 'date' in 'field list'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1168) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1103) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1450) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1086) ~[mysql-connector-j-9.2.0.jar:9.2.0]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-6.3.0.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-6.3.0.jar:na]
-	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026) ~[spring-jdbc-6.2.8.jar:6.2.8]
-	at wonbin.scheduler.Repository.holiday.JDBCholidayRepository.save(JDBCholidayRepository.java:18) ~[main/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.8.jar:6.2.8]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.8.jar:6.2.8]
-	at wonbin.scheduler.Repository.holiday.JDBCholidayRepository$$SpringCGLIB$$0.save(<generated>) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.printHoliday(holidayService.java:72) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.fetchAndSaveHolidays(holidayService.java:52) ~[main/:na]
-	at wonbin.scheduler.Service.Holiday.holidayService.updateYearlyHoliday(holidayService.java:25) ~[main/:na]
-	at wonbin.scheduler.Controller.holiday.holidayGetter.holidayUpdate(holidayGetter.java:14) ~[main/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.42.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.8.jar:6.2.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.42.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+java.nio.channels.UnresolvedAddressException: null
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149) ~[na:na]
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839) ~[na:na]
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183) ~[java.net.http:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569) ~[na:na]
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:525) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:405) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:529) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340) ~[na:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:529) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:381) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:373) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340) ~[na:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439) ~[java.net.http:na]
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341) ~[java.net.http:na]
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
 	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
 
-2025-09-21T15:08:48.236+09:00  INFO 20796 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 20796 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T15:08:48.242+09:00  INFO 20796 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T15:08:48.945+09:00  INFO 20796 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T15:08:48.983+09:00  INFO 20796 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 0 JDBC repository interfaces.
-2025-09-21T15:08:49.523+09:00  INFO 20796 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T15:08:49.535+09:00  INFO 20796 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T15:08:49.535+09:00  INFO 20796 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T15:08:49.586+09:00  INFO 20796 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T15:08:49.586+09:00  INFO 20796 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1292 ms
-2025-09-21T15:08:50.187+09:00  INFO 20796 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T15:08:50.423+09:00  INFO 20796 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T15:08:50.693+09:00  INFO 20796 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@175581eb
-2025-09-21T15:08:50.695+09:00  INFO 20796 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T15:08:50.942+09:00  INFO 20796 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T15:08:50.952+09:00  INFO 20796 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.216 seconds (process running for 3.499)
-2025-09-21T15:09:39.054+09:00  INFO 10732 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 10732 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-09-21T15:09:39.058+09:00  INFO 10732 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-09-21T15:09:39.762+09:00  INFO 10732 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-09-21T15:09:39.802+09:00  INFO 10732 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 0 JDBC repository interfaces.
-2025-09-21T15:09:40.343+09:00  INFO 10732 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-21T15:09:40.352+09:00  INFO 10732 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-21T15:09:40.352+09:00  INFO 10732 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-21T15:09:40.400+09:00  INFO 10732 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-21T15:09:40.401+09:00  INFO 10732 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1284 ms
-2025-09-21T15:09:40.998+09:00  INFO 10732 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-21T15:09:41.236+09:00  INFO 10732 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-21T15:09:41.488+09:00  INFO 10732 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@175581eb
-2025-09-21T15:09:41.491+09:00  INFO 10732 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-21T15:09:41.731+09:00  INFO 10732 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-21T15:09:41.739+09:00  INFO 10732 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.138 seconds (process running for 3.424)
-2025-09-21T15:09:45.573+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-21T15:09:45.573+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-21T15:09:45.574+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-21T15:09:45.594+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:09:45.595+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-2] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/home
-2025-09-21T15:09:49.836+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-5] w.scheduler.Controller.LoginController   : 로그인 요청 : 202126845
-2025-09-21T15:09:49.837+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-5] w.scheduler.Controller.LoginController   : MemberId=202126845 , Password=123
-2025-09-21T15:09:49.866+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-5] w.scheduler.Controller.LoginController   : 로그인 성공:202126845
-2025-09-21T15:09:49.879+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:09:51.137+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T15:09:51.379+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-01 , 1월1일
-2025-09-21T15:09:51.382+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-27 , 임시공휴일
-2025-09-21T15:09:51.385+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-28 , 설날
-2025-09-21T15:09:51.389+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-29 , 설날
-2025-09-21T15:09:51.392+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-30 , 설날
-2025-09-21T15:09:51.476+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-03-01 , 삼일절
-2025-09-21T15:09:51.479+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-03-03 , 대체공휴일
-2025-09-21T15:09:51.594+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-05-05 , 어린이날
-2025-09-21T15:09:51.596+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-05-05 , 부처님오신날
-2025-09-21T15:09:51.601+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-05-06 , 대체공휴일
-2025-09-21T15:09:51.646+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-06-03 , 임시공휴일(제21대 대통령 선거)
-2025-09-21T15:09:51.650+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-06-06 , 현충일
-2025-09-21T15:09:51.730+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-08-15 , 광복절
-2025-09-21T15:09:51.819+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-03 , 개천절
-2025-09-21T15:09:51.824+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-05 , 추석
-2025-09-21T15:09:51.828+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-06 , 추석
-2025-09-21T15:09:51.832+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-07 , 추석
-2025-09-21T15:09:51.835+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-08 , 대체공휴일
-2025-09-21T15:09:51.838+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-09 , 한글날
-2025-09-21T15:09:51.931+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-3] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-12-25 , 기독탄신일
-2025-09-21T15:12:31.184+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-6] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:12:33.185+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-4] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
-2025-09-21T15:12:34.479+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/holidays/update
-2025-09-21T15:12:34.610+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-01 , 1월1일
-2025-09-21T15:12:34.611+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-27 , 임시공휴일
-2025-09-21T15:12:34.612+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-28 , 설날
-2025-09-21T15:12:34.613+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-29 , 설날
-2025-09-21T15:12:34.614+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-01-30 , 설날
-2025-09-21T15:12:34.694+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-03-01 , 삼일절
-2025-09-21T15:12:34.696+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-03-03 , 대체공휴일
-2025-09-21T15:12:34.824+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-05-05 , 어린이날
-2025-09-21T15:12:34.825+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-05-05 , 부처님오신날
-2025-09-21T15:12:34.826+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-05-06 , 대체공휴일
-2025-09-21T15:12:34.867+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-06-03 , 임시공휴일(제21대 대통령 선거)
-2025-09-21T15:12:34.868+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-06-06 , 현충일
-2025-09-21T15:12:34.946+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-08-15 , 광복절
-2025-09-21T15:12:35.020+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-03 , 개천절
-2025-09-21T15:12:35.022+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-05 , 추석
-2025-09-21T15:12:35.024+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-06 , 추석
-2025-09-21T15:12:35.027+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-07 , 추석
-2025-09-21T15:12:35.029+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-08 , 대체공휴일
-2025-09-21T15:12:35.031+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-10-09 , 한글날
-2025-09-21T15:12:35.173+09:00  INFO 10732 --- [scheduler] [http-nio-8080-exec-8] w.s.Service.Holiday.holidayService       : holiday 저장 : 2025-12-25 , 기독탄신일
+2025-09-22T15:42:04.085+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
+2025-09-22T15:42:31.942+09:00  INFO 15348 --- [scheduler] [http-nio-8080-exec-3] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/home
+2025-09-22T15:45:58.777+09:00  INFO 8844 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 8844 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
+2025-09-22T15:45:58.781+09:00  INFO 8844 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-09-22T15:45:59.684+09:00  INFO 8844 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-09-22T15:45:59.734+09:00  INFO 8844 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 0 JDBC repository interfaces.
+2025-09-22T15:46:00.348+09:00  INFO 8844 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-22T15:46:00.359+09:00  INFO 8844 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-22T15:46:00.359+09:00  INFO 8844 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-09-22T15:46:00.417+09:00  INFO 8844 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-22T15:46:00.417+09:00  INFO 8844 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1570 ms
+2025-09-22T15:46:01.120+09:00  INFO 8844 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-09-22T15:46:01.411+09:00  INFO 8844 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-22T15:46:01.743+09:00  INFO 8844 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@333398f
+2025-09-22T15:46:01.745+09:00  INFO 8844 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-22T15:46:02.074+09:00  INFO 8844 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-22T15:46:02.087+09:00  INFO 8844 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.918 seconds (process running for 4.283)
+2025-09-22T15:46:55.267+09:00  INFO 8844 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-22T15:46:55.268+09:00  INFO 8844 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-22T15:46:55.270+09:00  INFO 8844 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-22T15:46:55.289+09:00  INFO 8844 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : 인터셉터 실행 : /api/salary
+2025-09-22T15:46:55.289+09:00  INFO 8844 --- [scheduler] [http-nio-8080-exec-1] w.s.Configuration.LoginCheckInterceptor  : session 확인 실패: /api/salary
+2025-09-22T15:50:22.587+09:00  INFO 20232 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 20232 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
+2025-09-22T15:50:22.592+09:00  INFO 20232 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-09-22T15:50:23.445+09:00  INFO 20232 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-09-22T15:50:23.511+09:00  INFO 20232 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 0 JDBC repository interfaces.
+2025-09-22T15:50:24.213+09:00  INFO 20232 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-22T15:50:24.226+09:00  INFO 20232 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-22T15:50:24.226+09:00  INFO 20232 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-09-22T15:50:24.300+09:00  INFO 20232 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-22T15:50:24.301+09:00  INFO 20232 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1647 ms
+2025-09-22T15:50:25.231+09:00  INFO 20232 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-09-22T15:50:25.611+09:00  INFO 20232 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-22T15:50:25.947+09:00  INFO 20232 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b0902b4
+2025-09-22T15:50:25.949+09:00  INFO 20232 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-22T15:50:26.294+09:00  INFO 20232 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-22T15:50:26.308+09:00  INFO 20232 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 4.309 seconds (process running for 4.677)
+2025-09-22T15:50:30.288+09:00  INFO 20232 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-22T15:50:30.289+09:00  INFO 20232 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-22T15:50:30.291+09:00  INFO 20232 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

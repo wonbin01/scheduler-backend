@@ -65,10 +65,8 @@ public class holidayService {
 
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate localDate=LocalDate.parse(date,formatter);
-        // 원하는 출력 형태
         System.out.println("날짜: " + localDate + ", 이름: " + name);
 
-        // DB로직 추가
         holidayRepository.save(localDate,name);
         log.info("holiday 저장 : {} , {}",localDate,name);
     }

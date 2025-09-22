@@ -9,7 +9,9 @@ import org.springframework.web.client.RestTemplate;
 import wonbin.scheduler.Entity.Salary.SalaryDto;
 import wonbin.scheduler.Entity.Salary.SalaryInfo;
 import wonbin.scheduler.Entity.Schedule.ScheduleViewInfo;
+import wonbin.scheduler.Entity.holiday.holidayInfo;
 import wonbin.scheduler.Repository.Schedule.ScheduleViewRepository;
+import wonbin.scheduler.Repository.holiday.holidayRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,8 @@ public class SalaryController {
 
     @Autowired
     ScheduleViewRepository scheduleViewRepository;
+    @Autowired
+    holidayRepository holidayRepository;
     @Autowired
     private RestTemplate restTemplate;  // RestTemplate 주입
     @Autowired
@@ -32,17 +36,27 @@ public class SalaryController {
         int month = req.getMonth();
 
         List<ScheduleViewInfo> result = scheduleViewRepository.findByUsernumberYearMonth(usernumber, year, month);
+        List<holidayInfo> byYearAndMonth = holidayRepository.findByYearAndMonth(year, month);
         Map<String,Object> request=new HashMap<>();
         request.put("usernumber",usernumber);
         request.put("year",year);
         request.put("month",month);
         request.put("workLogs",result);
+        request.put("holidayList",byYearAndMonth);
+
+//        //테스트용
+//        System.out.println(usernumber);
+//        System.out.println(year);
+//        System.out.println(month);
+//        System.out.println(result);
+//        System.out.println(byYearAndMonth);
 
         String url="http://calculator-service:8000/calculate";
         SalaryInfo response=restTemplate.postForObject(url,request, SalaryInfo.class);
 
         saveSalary(response,usernumber,year,month);
         return response;
+
     }
 
     private void saveSalary(SalaryInfo salary,int usernumber,int year,int month){
