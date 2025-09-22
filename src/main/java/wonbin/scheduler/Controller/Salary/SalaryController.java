@@ -51,7 +51,7 @@ public class SalaryController {
 //        System.out.println(result);
 //        System.out.println(byYearAndMonth);
 
-        String url="http://calculator-service:8000/calculate";
+        String url="http://calculator:8000/calculate";
         SalaryInfo response=restTemplate.postForObject(url,request, SalaryInfo.class);
 
         saveSalary(response,usernumber,year,month);
