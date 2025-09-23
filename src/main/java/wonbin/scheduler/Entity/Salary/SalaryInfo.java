@@ -13,4 +13,5 @@ public class SalaryInfo {
     private int holiday_bonus;
     private int before_tax;
     private int after_tax;
+    private int next_month_weekly_bonus;
 }
