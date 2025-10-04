@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 @Slf4j
 public class holidayService {
-    private final String SERVICE_KEY="3f96e30786885aa763e93cc30ec6cb00b005e0eacc2727e048519b17a9cd312d";
+    private final String SERVICE_KEY="***";
     private final RestTemplate restTemplate=new RestTemplate();
     private final holidayRepository holidayRepository;
 
