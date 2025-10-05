@@ -101,3 +101,8 @@ db에서 조회 후 json 형태로 전달하게 된다.
 
 - **DB 테이블 구조 최적화 및 Indexing 적용**  
   쿼리 성능 향상을 위해 정규화 및 인덱싱 전략 재검토 예정.
+
+- **controller와 service 코드 분리**
+현재 코드에는 controller와 service 코드가 함께 나타나며, SOC를 만족시키지 못했음
+
+  리펙토링으로 SOC를 만족 시킬 예정
