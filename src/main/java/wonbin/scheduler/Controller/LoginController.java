@@ -25,14 +25,11 @@ public class LoginController {
         log.info("회원가입 요청: MemberId={}, MemberName={}", info.getUsernumber(), info.getUsername());
 
         try {
-            // repository.save() 메서드가 성공하면(예외를 던지지 않으면) 이 부분이 실행됩니다.
             repository.save(info);
             log.info("회원가입 성공: MemberId={}", info.getUsernumber());
             return ResponseEntity.ok("회원가입 성공");
         } catch (JDBCMemberInfoRepository.DuplicateMemberException e) {
-            // repository.save()에서 던진 DuplicateMemberException을 여기서 잡습니다.
             log.error("회원가입 실패: {}", e.getMessage());
-            // 올바른 HTTP 상태 코드인 409 Conflict와 예외 메시지를 반환합니다.
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
