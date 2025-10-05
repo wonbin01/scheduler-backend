@@ -55,3 +55,43 @@
 DB의 member table에 **JDBCMemberInfoRepository repositoy**를 사용해서 접근한다. 사용자가 회원가입 및 로그인할 때, member
 테이블에 접근해서 데이터를 읽거나 쓰는 역할을 수행하도록 했다.
 
+### 스케줄 신청
+DB의 apply_info table에 **JDBCScheduleApplyRepository**를 사용해서 접근한다. 관리자가 allowed_date table에
+신청가능 일자를 저장해두면, 사용자는 신청가능 일자 중에서만 스케줄 신청이 가능하도록 구현했다.
+
+### 스케줄 확인
+DB의 view_info table에 **JDBCScheduleViewRepostory**를 사용해서 접근한다. 관리자가 아르바이트생들의 스케줄을 List형태로
+서버로 전송하면, 하나씩 읽으면서 view_info table에 스케줄을 저장한다. 사용자는 자신의 스케줄만 달력에 표시된것을 볼 수 있으며
+이를 통해 한눈에 자신의 근무 일자를 확인하는 것이 가능하다. 다른 사람의 스케줄 확인도 달력의 빈 부분을 누르면 확인할 수 있도록 구현했다.
+
+### 월급 확인
+월급 확인은 사용자의 근무시간, 휴일 수당, 야간 수당, 주휴 수당을 모두 고려해서 총 금액과 세부 내역을 사용자에게 보여준다.
+DB에 salary_info table에 저장한다. 실무에서는 간단한 계산이기 때문에, service폴더에 계산 로직을 두는 구조를 사용할 것이지만,
+학습을 위해 docker를 사용해 다른 container와 정보를 주고받는 마이크로서비스 아키텍처를 사용해봤다. calculator container는
+다른 프로젝트 폴더에 위치하며, 8000번 포트에서 실행 중이다. 같은 network로 연결해 calculator로 호출할 수 있으며, calculator container는
+계산 로직만 수행한다.
+
+### 기술 요약
+
+| 기능 | 테이블 | Repository | 비고 |
+|------|---------|-------------|------|
+| 회원가입/로그인 | member | JDBCMemberInfoRepository | 사용자 인증 |
+| 스케줄 신청 | apply_info / allowed_date | JDBCScheduleApplyRepository | 신청 가능 일자 관리 |
+| 스케줄 확인 | view_info | JDBCScheduleViewRepository | 개인 및 전체 스케줄 조회 |
+| 월급 확인 | salary_info | JDBCSalaryRepository | Docker 기반 계산 서비스 연동 |
+
+## 앞으로 해야 할 일 (To-Do / Refactoring Plan)
+- **Session 기반 로그인 → JWT 기반 인증으로 전환**  
+  기존 세션 방식의 로그인 구조를 JWT 토큰 기반 인증으로 변경하여,  
+  RESTful 환경에서의 확장성과 보안성 향상 목표.
+- 
+- **Docker Compose 통합**  
+  현재 개별적으로 실행 중인 컨테이너(`server`, `calculator`)를  
+  `docker-compose.yml`로 통합 관리하여 배포 및 실행 자동화.
+
+- **GitHub Actions 적용 (자동 배포 파이프라인 구축)**  
+  push 시 자동으로 build 및 배포가 이루어지도록 CI/CD 워크플로우 구축 예정.  
+  (예: main 브랜치 push → Docker 이미지 빌드 및 서버 자동 업데이트)
+
+- **DB 테이블 구조 최적화 및 Indexing 적용**  
+  쿼리 성능 향상을 위해 정규화 및 인덱싱 전략 재검토 예정.
