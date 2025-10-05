@@ -71,6 +71,12 @@ DB에 salary_info table에 저장한다. 실무에서는 간단한 계산이기 
 다른 프로젝트 폴더에 위치하며, 8000번 포트에서 실행 중이다. 같은 network로 연결해 calculator로 호출할 수 있으며, calculator container는
 계산 로직만 수행한다.
 
+### 공휴일 관리
+월급 확인하는 과정에서 국가 지정 휴일에는 월급 계산이 달라지므로, 공휴일을 지정해야하는 문제가 있다. 이러한 문제는 공공데이터 api를 가져와서
+공휴일을 업데이트하는 방식을 사용했다. 공휴일 업데이트는 관리자의 화면에서만 확인 할 수 있고, 관리자가 버튼을 누르면 공공데이터 포탈에서 json정보로 받아와
+holiday_info 테이블에 저장한다. 월급 확인할 때는, scheduler container가 calculator container에게 정보를 전달하기 전에
+db에서 조회 후 json 형태로 전달하게 된다.
+
 ### 기술 요약
 
 | 기능 | 테이블 | Repository | 비고 |
@@ -84,7 +90,7 @@ DB에 salary_info table에 저장한다. 실무에서는 간단한 계산이기 
 - **Session 기반 로그인 → JWT 기반 인증으로 전환**  
   기존 세션 방식의 로그인 구조를 JWT 토큰 기반 인증으로 변경하여,  
   RESTful 환경에서의 확장성과 보안성 향상 목표.
-- 
+
 - **Docker Compose 통합**  
   현재 개별적으로 실행 중인 컨테이너(`server`, `calculator`)를  
   `docker-compose.yml`로 통합 관리하여 배포 및 실행 자동화.
