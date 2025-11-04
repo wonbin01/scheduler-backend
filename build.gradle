@@ -32,6 +32,9 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.json:json:20240303'
 
+	implementation 'com.google.cloud:google-cloud-documentai:2.x.x'
+	implementation 'com.google.cloud:google-cloud-vision:3.x.x'
+
 	//mybatis 및 mysql dependency
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
