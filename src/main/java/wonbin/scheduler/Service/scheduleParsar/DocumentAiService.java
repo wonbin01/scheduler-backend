@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import wonbin.scheduler.Entity.ScheduleEntry;
 
+@Service
 public class DocumentAiService {
     @Value("${gcp.project.id}")
     private String projectId;
@@ -25,9 +27,7 @@ public class DocumentAiService {
     @Value("${gcp.documentai.processor.location}")
     private String location;
 
-    // 반환 타입을 List<ScheduleEntry>로 변경
     public List<ScheduleEntry> extractSchedule(MultipartFile file) throws IOException {
-
         try (DocumentProcessorServiceClient client = DocumentProcessorServiceClient.create()) {
             String processorName = String.format(
                     "projects/%s/locations/%s/processors/%s",
@@ -48,9 +48,6 @@ public class DocumentAiService {
             ProcessResponse response = client.processDocument(request);
             Document doc = response.getDocument();
 
-            // ----------------------------------------------------
-            // 테이블 파싱 로직 시작
-            // ----------------------------------------------------
             if (doc.getPagesCount() == 0 || doc.getPages(0).getTablesList().isEmpty()) {
                 // 표를 찾을 수 없는 경우 빈 리스트 반환
                 return new ArrayList<>();
@@ -74,18 +71,18 @@ public class DocumentAiService {
                         .map(cell -> getTextFromLayout(cell, fullText))
                         .collect(Collectors.toList());
 
-                // 최소한의 데이터 (구분, 이름, 일수)를 포함해야 합니다.
+                // 최소한의 데이터 (구분, 이름, 일수)를 포함
                 if (rowCells.size() < 3) {
                     continue;
                 }
 
                 String name = rowCells.get(1); // 이름은 두 번째 컬럼 (인덱스 1)
 
-                // 데이터 컬럼은 3번째 셀(인덱스 3)부터 시작합니다.
-                // 3개 셀마다 하나의 스케줄 (출근/퇴근/근무시간)을 구성합니다.
+                // 데이터 컬럼은 3번째 셀(인덱스 3)부터 시작
+                // 3개 셀마다 하나의 스케줄 (출근/퇴근/근무시간)을 구성
                 for (int i = 3; i < rowCells.size(); i += 3) {
-                    // combinedHeaders의 인덱스와 rowCells의 인덱스를 맞춥니다.
-                    // combinedHeaders는 날짜당 3개씩 ('출근', '퇴근', '근무시간'이 결합된) 헤더를 가집니다.
+                    // combinedHeaders의 인덱스와 rowCells의 인덱스를 맞춤
+                    // combinedHeaders는 날짜당 3개씩 ('출근', '퇴근', '근무시간'이 결합된) 헤더를 가짐
                     int headerIndex = (i - 3) / 3;
 
                     if (headerIndex >= combinedHeaders.size()) {
@@ -138,13 +135,7 @@ public class DocumentAiService {
                 continue;
             }
 
-            // 복잡한 헤더 정보가 포함된 경우 (예: "11월 2주차 스케줄 11/06(목)...")
-            // 여기서 날짜 패턴을 추출하는 정교한 로직이 필요하지만, 여기서는 단순화하여
-            // 괄호가 포함된 날짜 정보만 저장한다고 가정합니다.
-            // Form Parser는 병합된 셀(ColSpan)을 기반으로 날짜를 추출해줍니다.
             if (!dateText.isEmpty()) {
-                // 날짜 텍스트에서 불필요한 정보 제거 (예: '11월 2주차')
-                // 여기서는 셀 자체의 텍스트가 날짜 정보만 담고 있다고 가정합니다.
                 dateHeaders.add(dateText);
             }
         }
