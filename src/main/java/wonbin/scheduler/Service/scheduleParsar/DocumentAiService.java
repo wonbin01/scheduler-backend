@@ -12,7 +12,9 @@ import com.google.cloud.documentai.v1.RawDocument;
 import com.google.protobuf.ByteString;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +29,8 @@ public class DocumentAiService {
     private String processorId; // Form Parser ID
     @Value("${gcp.documentai.processor.location}")
     private String location;
+    @Value("${gcp.GEMINI_API_KEY}")
+    private String apiKey;
 
     public List<List<String>> extractSchedule(MultipartFile file) throws IOException {
         try (DocumentProcessorServiceClient client = DocumentProcessorServiceClient.create()) {
@@ -85,10 +89,12 @@ public class DocumentAiService {
             }
         }
         List<String> dates = extractDates(tableData);
+        Map<String, List<String>> nameAndTime = extractTimes(tableData);
+        System.out.println(nameAndTime);
         return tableData;
     }
 
-    private static List<String> extractDates(List<List<String>> tableData) {
+    private List<String> extractDates(List<List<String>> tableData) {
         List<String> strings = tableData.get(0);
         Pattern pattern = Pattern.compile("\\d{2}/\\d{2}\\([가-힣]\\)");
         List<String> dates = new ArrayList<>();
@@ -99,6 +105,58 @@ public class DocumentAiService {
             }
         }
         return dates;
+    }
+
+    public Map<String, List<String>> extractTimes(List<List<String>> tableData) {
+        Map<String, List<String>> nametoTime = new LinkedHashMap<>();
+        Pattern timePattern = Pattern.compile("\\d{1,2}:\\d{2}");
+        Pattern namePattern = Pattern.compile("[가-힣]{2,}");
+
+        for (List<String> row : tableData) {
+            if (row.isEmpty()) {
+                continue;
+            }
+
+            String name = null;
+            for (String cell : row) {
+                Matcher namematcher = namePattern.matcher(cell);
+                if (namematcher.find()) {
+                    name = namematcher.group();
+                    break;
+                }
+            }
+            if (name == null) {
+                continue;
+            }
+
+            List<String> times = new ArrayList<>();
+            for (String cell : row) {
+                Matcher timeMatcher = timePattern.matcher(cell);
+                boolean found = false;
+
+                while (timeMatcher.find()) {
+                    times.add(timeMatcher.group());
+                    found = true;
+                }
+
+                if (!found) {
+                    times.add(".");
+                }
+            }
+
+            // 출근-퇴근만 남기고 근무시간(3번째) 제거
+            List<String> filteredTimes = new ArrayList<>();
+            for (int i = 1; i < times.size(); i++) {
+                if (i % 3 != 1) { // 3개 중 3번째(근무시간)는 제외
+                    filteredTimes.add(times.get(i));
+                }
+            }
+
+            if (!filteredTimes.isEmpty()) {
+                nametoTime.put(name, filteredTimes);
+            }
+        }
+        return nametoTime;
     }
 
 }
