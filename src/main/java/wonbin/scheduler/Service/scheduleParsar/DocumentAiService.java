@@ -1,22 +1,17 @@
 package wonbin.scheduler.Service.scheduleParsar;
 
 import com.google.cloud.documentai.v1.Document;
-import com.google.cloud.documentai.v1.Document.Page;
-import com.google.cloud.documentai.v1.Document.Page.Table;
-import com.google.cloud.documentai.v1.Document.Page.Table.TableCell;
-import com.google.cloud.documentai.v1.Document.Page.Table.TableRow;
 import com.google.cloud.documentai.v1.DocumentProcessorServiceClient;
 import com.google.cloud.documentai.v1.ProcessRequest;
 import com.google.cloud.documentai.v1.ProcessResponse;
 import com.google.cloud.documentai.v1.RawDocument;
+import com.google.genai.Client;
+import com.google.genai.types.Content;
+import com.google.genai.types.GenerateContentResponse;
+import com.google.genai.types.Part;
 import com.google.protobuf.ByteString;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,7 +27,7 @@ public class DocumentAiService {
     @Value("${gcp.GEMINI_API_KEY}")
     private String apiKey;
 
-    public List<List<String>> extractSchedule(MultipartFile file) throws IOException {
+    public String extractSchedule(MultipartFile file) throws IOException {
         try (DocumentProcessorServiceClient client = DocumentProcessorServiceClient.create()) {
             String processorName = String.format(
                     "projects/%s/locations/%s/processors/%s",
@@ -52,111 +47,44 @@ public class DocumentAiService {
 
             ProcessResponse response = client.processDocument(request);
             Document doc = response.getDocument();
-            List<List<String>> docsInfo = extractTableInfo(doc);
-            return docsInfo;
+            String result = callGEMINI(doc.getText(), file);
+            System.out.println(doc.getText());
+            return result;
         }
     }
 
-    public List<List<String>> extractTableInfo(Document document) {
-        List<List<String>> tableData = new ArrayList<>();
-        String fullText = document.getText(); // 전체 텍스트를 한 번에 가져옴
+    private String callGEMINI(String info, MultipartFile file) {
+        Client client = Client.builder().apiKey(apiKey).build();
+        String req = String.format(
+                "첨부된 근무 스케줄표 이미지와 추가 정보를 분석하여, " + "각 직원의 이름, 날짜, 출근시간, 퇴근시간을 추출한 후, " + "이 결과를 JSON 배열 형식으로만 응답해 주세요."
+                        + "JSON 배열은 반드시 날짜 오름차순(목요일, 금요일, 토요일...)으로 정렬해 주세요. 예를 들어, 목요일 근무자 데이터를 모두 나열한 뒤 금요일 근무자 데이터를 나열해야 합니다."
+                        + "직원 이름에 해당하는 근무 시간이 정확히 어떤 날짜 컬럼 아래에 위치하는지 수직적으로 꼼꼼하게 확인한 후 해당 날짜로 매핑해야 합니다."
+                        + "json으로 반환할때, 포지션 부분은 빈칸으로 반환하세요"
+        );
+        try {
+            byte[] bytes = file.getBytes();
+            String mimeType = file.getContentType();
 
-        for (Page page : document.getPagesList()) {
-            for (Table table : page.getTablesList()) {
+            Part imagePart = Part.fromBytes(bytes, mimeType);
 
-                List<TableRow> allRows = new ArrayList<>(); //모든 row를 집어넣음
-                allRows.addAll(table.getHeaderRowsList());
-                allRows.addAll(table.getBodyRowsList());
+            Content content = Content.builder()
+                    .parts(List.of(
+                            imagePart,
+                            Part.fromText(req)
+                    ))
+                    .build();
 
-                for (TableRow row : allRows) {
-                    List<String> rowData = new ArrayList<>();
-                    for (TableCell cell : row.getCellsList()) { //각각의 열을 가져와서
-                        StringBuilder cellText = new StringBuilder();
-
-                        for (Document.TextAnchor.TextSegment segment :
-                                cell.getLayout().getTextAnchor().getTextSegmentsList()) { //각 열의 정보를 합침
-                            int startIndex = (int) segment.getStartIndex();
-                            int endIndex = (int) segment.getEndIndex();
-
-                            if (startIndex >= 0 && endIndex <= fullText.length()) {
-                                cellText.append(fullText, startIndex, endIndex);
-                            }
-                        }
-                        rowData.add(cellText.toString().trim());
-                    }
-                    tableData.add(rowData);
-                }
-            }
+            GenerateContentResponse response = client.models.generateContent(
+                    "gemini-2.5-pro",
+                    content,
+                    null
+            );
+            return response.text();
+        } catch (IOException e) {
+            return "파일 처리 중 오류가 발생했습니다. : " + e.getMessage();
+        } catch (Exception e) {
+            return "Gemini API 호출 중 오류가 발생했습니다. : " + e.getMessage();
         }
-        List<String> dates = extractDates(tableData);
-        Map<String, List<String>> nameAndTime = extractTimes(tableData);
-        System.out.println(nameAndTime);
-        return tableData;
-    }
-
-    private List<String> extractDates(List<List<String>> tableData) {
-        List<String> strings = tableData.get(0);
-        Pattern pattern = Pattern.compile("\\d{2}/\\d{2}\\([가-힣]\\)");
-        List<String> dates = new ArrayList<>();
-        for (String cell : strings) {
-            Matcher matcher = pattern.matcher(cell);
-            while (matcher.find()) {
-                dates.add(matcher.group());
-            }
-        }
-        return dates;
-    }
-
-    public Map<String, List<String>> extractTimes(List<List<String>> tableData) {
-        Map<String, List<String>> nametoTime = new LinkedHashMap<>();
-        Pattern timePattern = Pattern.compile("\\d{1,2}:\\d{2}");
-        Pattern namePattern = Pattern.compile("[가-힣]{2,}");
-
-        for (List<String> row : tableData) {
-            if (row.isEmpty()) {
-                continue;
-            }
-
-            String name = null;
-            for (String cell : row) {
-                Matcher namematcher = namePattern.matcher(cell);
-                if (namematcher.find()) {
-                    name = namematcher.group();
-                    break;
-                }
-            }
-            if (name == null) {
-                continue;
-            }
-
-            List<String> times = new ArrayList<>();
-            for (String cell : row) {
-                Matcher timeMatcher = timePattern.matcher(cell);
-                boolean found = false;
-
-                while (timeMatcher.find()) {
-                    times.add(timeMatcher.group());
-                    found = true;
-                }
-
-                if (!found) {
-                    times.add(".");
-                }
-            }
-
-            // 출근-퇴근만 남기고 근무시간(3번째) 제거
-            List<String> filteredTimes = new ArrayList<>();
-            for (int i = 1; i < times.size(); i++) {
-                if (i % 3 != 1) { // 3개 중 3번째(근무시간)는 제외
-                    filteredTimes.add(times.get(i));
-                }
-            }
-
-            if (!filteredTimes.isEmpty()) {
-                nametoTime.put(name, filteredTimes);
-            }
-        }
-        return nametoTime;
     }
 
 }

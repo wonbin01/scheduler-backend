@@ -103,7 +103,7 @@ public class ScheduleViewController {
         }
 
         try {
-            List<List<String>> totalSchedules = documentAiService.extractSchedule(file);
+            String totalSchedules = documentAiService.extractSchedule(file);
 
             if (totalSchedules.isEmpty()) {
                 return new ResponseEntity<>("파일에서 유효한 스케줄 데이터를 추출하지 못했습니다.", HttpStatus.NO_CONTENT);
