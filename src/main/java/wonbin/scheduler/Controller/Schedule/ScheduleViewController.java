@@ -98,32 +98,23 @@ public class ScheduleViewController {
     @PostMapping("/file")
     public ResponseEntity<?> extractFile(@RequestParam("file") MultipartFile file) {
         // 1. 파일 유효성 검사
-        String keyPath = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
-        System.out.println("인증 정보 경로: " + keyPath);
         if (file.isEmpty() || file.getOriginalFilename() == null) {
             return new ResponseEntity<>("파일이 비어있거나 유효하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
 
         try {
-            String totalSchedules = documentAiService.extractSchedule(file);
+            List<List<String>> totalSchedules = documentAiService.extractSchedule(file);
 
-            // 3. 성공 응답 반환
             if (totalSchedules.isEmpty()) {
-                // Document AI가 테이블을 찾지 못했거나 추출할 데이터가 없는 경우
                 return new ResponseEntity<>("파일에서 유효한 스케줄 데이터를 추출하지 못했습니다.", HttpStatus.NO_CONTENT);
             }
 
-            // 추출된 스케줄 데이터를 HTTP 200 OK와 함께 JSON 형태로 반환합니다.
             System.out.println(totalSchedules);
             return new ResponseEntity<>(totalSchedules, HttpStatus.OK);
 
         } catch (IOException e) {
-            // 파일 처리 중 I/O 오류 발생 시
             return new ResponseEntity<>("파일 처리 중 오류가 발생했습니다: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
-            // Document AI 통신 등 기타 예외 처리
-            // 실제 프로젝트에서는 Custom Exception으로 분리하여 처리하는 것이 좋습니다.
-            e.printStackTrace();
             return new ResponseEntity<>("스케줄 추출 중 시스템 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
