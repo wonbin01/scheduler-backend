@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Schedule.ScheduleViewInfo;
-import wonbin.scheduler.Entity.ScheduleEntry;
 import wonbin.scheduler.Repository.Member.MemberInfoRepository;
 import wonbin.scheduler.Repository.Schedule.ScheduleViewRepository;
 import wonbin.scheduler.Service.scheduleParsar.DocumentAiService;
@@ -106,16 +105,17 @@ public class ScheduleViewController {
         }
 
         try {
-            List<ScheduleEntry> schedules = documentAiService.extractSchedule(file);
+            String totalSchedules = documentAiService.extractSchedule(file);
 
             // 3. 성공 응답 반환
-            if (schedules.isEmpty()) {
+            if (totalSchedules.isEmpty()) {
                 // Document AI가 테이블을 찾지 못했거나 추출할 데이터가 없는 경우
                 return new ResponseEntity<>("파일에서 유효한 스케줄 데이터를 추출하지 못했습니다.", HttpStatus.NO_CONTENT);
             }
 
             // 추출된 스케줄 데이터를 HTTP 200 OK와 함께 JSON 형태로 반환합니다.
-            return new ResponseEntity<>(schedules, HttpStatus.OK);
+            System.out.println(totalSchedules);
+            return new ResponseEntity<>(totalSchedules, HttpStatus.OK);
 
         } catch (IOException e) {
             // 파일 처리 중 I/O 오류 발생 시

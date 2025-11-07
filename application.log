@@ -1,36 +1,18 @@
-2025-11-06T00:01:46.666+09:00  INFO 8252 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 8252 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-11-06T00:01:46.689+09:00  INFO 8252 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-11-06T00:01:47.474+09:00  INFO 8252 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-11-06T00:01:47.529+09:00  INFO 8252 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 0 JDBC repository interfaces.
-2025-11-06T00:01:48.122+09:00  INFO 8252 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-11-06T00:01:48.138+09:00  INFO 8252 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-06T00:01:48.138+09:00  INFO 8252 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-11-06T00:01:48.201+09:00  INFO 8252 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-06T00:01:48.201+09:00  INFO 8252 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1449 ms
-2025-11-06T00:01:48.549+09:00  INFO 8252 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-11-06T00:01:48.898+09:00  INFO 8252 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-06T00:01:49.230+09:00  INFO 8252 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d66a126
-2025-11-06T00:01:49.230+09:00  INFO 8252 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-06T00:01:49.583+09:00  INFO 8252 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-11-06T00:01:49.598+09:00  INFO 8252 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.498 seconds (process running for 3.875)
-2025-11-06T00:01:52.253+09:00  INFO 8252 --- [scheduler] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06T00:01:52.253+09:00  INFO 8252 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-11-06T00:01:52.269+09:00  INFO 8252 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-11-06T00:07:13.885+09:00  INFO 11032 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 11032 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
-2025-11-06T00:07:13.886+09:00  INFO 11032 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-11-06T00:07:14.638+09:00  INFO 11032 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-11-06T00:07:14.685+09:00  INFO 11032 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
-2025-11-06T00:07:15.287+09:00  INFO 11032 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-11-06T00:07:15.318+09:00  INFO 11032 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-06T00:07:15.318+09:00  INFO 11032 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-11-06T00:07:15.365+09:00  INFO 11032 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-06T00:07:15.365+09:00  INFO 11032 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1423 ms
-2025-11-06T00:07:15.695+09:00  INFO 11032 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-11-06T00:07:15.994+09:00  INFO 11032 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-06T00:07:16.324+09:00  INFO 11032 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@712cd5d3
-2025-11-06T00:07:16.324+09:00  INFO 11032 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-06T00:07:16.687+09:00  INFO 11032 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-11-06T00:07:16.693+09:00  INFO 11032 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 3.361 seconds (process running for 3.682)
-2025-11-06T00:07:19.160+09:00  INFO 11032 --- [scheduler] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06T00:07:19.160+09:00  INFO 11032 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-11-06T00:07:19.160+09:00  INFO 11032 --- [scheduler] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-07T15:21:06.780+09:00  INFO 18192 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Starting SchedulerApplication using Java 17.0.12 with PID 18192 (C:\Users\wonbin\Desktop\scheduler\build\classes\java\main started by wonbin in C:\Users\wonbin\Desktop\scheduler)
+2025-11-07T15:21:06.788+09:00  INFO 18192 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-11-07T15:21:07.758+09:00  INFO 18192 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-11-07T15:21:07.821+09:00  INFO 18192 --- [scheduler] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 0 JDBC repository interfaces.
+2025-11-07T15:21:08.586+09:00  INFO 18192 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-07T15:21:08.601+09:00  INFO 18192 --- [scheduler] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-07T15:21:08.601+09:00  INFO 18192 --- [scheduler] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-11-07T15:21:08.696+09:00  INFO 18192 --- [scheduler] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-07T15:21:08.696+09:00  INFO 18192 --- [scheduler] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1829 ms
+2025-11-07T15:21:09.136+09:00  INFO 18192 --- [scheduler] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-07T15:21:09.508+09:00  INFO 18192 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-07T15:21:09.870+09:00  INFO 18192 --- [scheduler] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1510b9a2
+2025-11-07T15:21:09.870+09:00  INFO 18192 --- [scheduler] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-07T15:21:10.297+09:00  INFO 18192 --- [scheduler] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-07T15:21:10.312+09:00  INFO 18192 --- [scheduler] [main] wonbin.scheduler.SchedulerApplication    : Started SchedulerApplication in 4.145 seconds (process running for 4.552)
+2025-11-07T15:21:29.953+09:00  INFO 18192 --- [scheduler] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07T15:21:29.953+09:00  INFO 18192 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-07T15:21:29.954+09:00  INFO 18192 --- [scheduler] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
