@@ -108,7 +108,6 @@ public class ScheduleViewController {
             if (totalSchedules.isEmpty()) {
                 return new ResponseEntity<>("파일에서 유효한 스케줄 데이터를 추출하지 못했습니다.", HttpStatus.NO_CONTENT);
             }
-
             return new ResponseEntity<>(totalSchedules, HttpStatus.OK);
 
         } catch (IOException e) {
