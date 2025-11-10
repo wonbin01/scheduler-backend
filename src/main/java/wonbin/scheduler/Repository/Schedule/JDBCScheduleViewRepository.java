@@ -1,6 +1,12 @@
 package wonbin.scheduler.Repository.Schedule;
 
-import lombok.RequiredArgsConstructor;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -12,26 +18,23 @@ import org.springframework.stereotype.Repository;
 import wonbin.scheduler.Entity.Schedule.ScheduleViewInfo;
 import wonbin.scheduler.Repository.Member.MemberInfoRepository;
 
-import java.sql.*;
-import java.util.List;
-
 @Slf4j
 @Repository
-public class JDBCScheduleViewRepository implements ScheduleViewRepository{
-
+public class JDBCScheduleViewRepository implements ScheduleViewRepository {
     private final JdbcTemplate jdbcTemplate;
     @Autowired
     MemberInfoRepository memberInfoRepository;
 
-    public JDBCScheduleViewRepository(JdbcTemplate jdbcTemplate){
-        this.jdbcTemplate=jdbcTemplate;
+    public JDBCScheduleViewRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
-    ViewInfoRowMapper viewInfoRowMapper=new ViewInfoRowMapper();
+
+    ViewInfoRowMapper viewInfoRowMapper = new ViewInfoRowMapper();
 
     private static class ViewInfoRowMapper implements RowMapper<ScheduleViewInfo> {
         @Override
         public ScheduleViewInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
-            ScheduleViewInfo scheduleviewInfo=new ScheduleViewInfo();
+            ScheduleViewInfo scheduleviewInfo = new ScheduleViewInfo();
             scheduleviewInfo.setUserNumber(rs.getInt("user_number"));
             scheduleviewInfo.setPosition(rs.getString("position"));
             scheduleviewInfo.setApplyDate(rs.getTimestamp("apply_date").toLocalDateTime().toLocalDate());
@@ -42,6 +45,7 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
             return scheduleviewInfo;
         }
     }
+
     @Override
     public List<ScheduleViewInfo> findByYear_Month(int year, int month) {
         String sql = "SELECT " +
@@ -55,19 +59,19 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
 
     @Override
     public void save(ScheduleViewInfo info) {
-        String sql="INSERT INTO view_info (user_number,position,apply_date,start_time,end_time) VALUES (?,?,?,?,?)";
-        KeyHolder keyHolder=new GeneratedKeyHolder();
-        jdbcTemplate.update(connection->{
-            PreparedStatement ps=connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,info.getUserNumber());
-            ps.setString(2,info.getPosition());
+        String sql = "INSERT INTO view_info (user_number,position,apply_date,start_time,end_time) VALUES (?,?,?,?,?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, info.getUserNumber());
+            ps.setString(2, info.getPosition());
             ps.setTimestamp(3, Timestamp.valueOf(info.getApplyDate().atStartOfDay()));
 //            ps.setString(4,info.getUserName());
             ps.setTime(4, Time.valueOf(info.getStartTime()));
-            ps.setTime(5,Time.valueOf(info.getEndTime()));
+            ps.setTime(5, Time.valueOf(info.getEndTime()));
             return ps;
-        },keyHolder);
-        if(keyHolder.getKey()!=null){
+        }, keyHolder);
+        if (keyHolder.getKey() != null) {
             info.setScheduleEventId(keyHolder.getKey().longValue());
         }
     }
@@ -96,12 +100,12 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
 
     @Override
     public void delete(ScheduleViewInfo info) {
-        String sql="DELETE FROM view_info WHERE schedule_event_id=?";
-        int affectedRow=jdbcTemplate.update(sql,info.getScheduleEventId());
-        if(affectedRow>0){
-            log.info("삭제 성공 scheduleEventId={}",info.getScheduleEventId());
-        } else{
-            log.info("삭제 성공 scheduleEvnetId={}",info.getScheduleEventId());
+        String sql = "DELETE FROM view_info WHERE schedule_event_id=?";
+        int affectedRow = jdbcTemplate.update(sql, info.getScheduleEventId());
+        if (affectedRow > 0) {
+            log.info("삭제 성공 scheduleEventId={}", info.getScheduleEventId());
+        } else {
+            log.info("삭제 성공 scheduleEvnetId={}", info.getScheduleEventId());
         }
     }
 
@@ -116,4 +120,15 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository{
         List<ScheduleViewInfo> schedules = jdbcTemplate.query(sql, viewInfoRowMapper, usernumber, year, month);
         return schedules;
     }
+
+    @Override
+    public int findByUserName(String username) {
+        String sql = "SELECT usernumber FROM member_info WHERE username = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, Integer.class, username);
+        } catch (EmptyResultDataAccessException e) {
+            return -1;
+        }
+    }
+
 }
