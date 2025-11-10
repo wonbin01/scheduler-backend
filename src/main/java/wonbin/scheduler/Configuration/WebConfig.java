@@ -43,9 +43,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "/manifest.json",
                         "/static/**",
                         "/",                   // 루트
-                        "/index.html",      // 리액트 루트 HTML
-                        "/api/file",
-                        "/api/file/extract/scheduleApply"
+                        "/index.html"      // 리액트 루트 HTML
 
                 );
     }
