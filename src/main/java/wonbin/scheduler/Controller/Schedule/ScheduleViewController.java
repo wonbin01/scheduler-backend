@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -128,7 +129,7 @@ public class ScheduleViewController {
         for (ScheduleViewInfo dto : list) {
             int userNumber = viewRepository.findByUserName(dto.getUserName());
             if (userNumber == -1) {
-                return ResponseEntity.badRequest().body("사용자를 찾을 수 없습니다.");
+                return getStringResponseEntity();
             }
             ScheduleViewInfo entity = new ScheduleViewInfo();
             entity.setUserNumber(userNumber);
@@ -141,6 +142,11 @@ public class ScheduleViewController {
         }
         viewRepository.saveAll(resultList);
         return ResponseEntity.ok("스케줄이 정상적으로 저장되었습니다.");
+    }
+
+    @NotNull
+    private static ResponseEntity<String> getStringResponseEntity() {
+        return ResponseEntity.badRequest().body("사용자를 찾을 수 없습니다.");
     }
 
 }

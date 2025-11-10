@@ -125,7 +125,7 @@ public class JDBCScheduleViewRepository implements ScheduleViewRepository {
     public int findByUserName(String username) {
         String sql = "SELECT usernumber FROM member_info WHERE username = ?";
         try {
-            return jdbcTemplate.queryForObject(sql, Integer.class, username);
+            return jdbcTemplate.queryForObject(sql, Integer.class, username.trim());
         } catch (EmptyResultDataAccessException e) {
             return -1;
         }
