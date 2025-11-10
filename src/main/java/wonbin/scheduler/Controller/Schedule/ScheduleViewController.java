@@ -2,11 +2,13 @@ package wonbin.scheduler.Controller.Schedule;
 
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -117,4 +119,34 @@ public class ScheduleViewController {
             return new ResponseEntity<>("스케줄 추출 중 시스템 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("file/extract/scheduleApply")
+    public ResponseEntity<?> makeScheduleViewInfoAndSave(@RequestBody List<ScheduleViewInfo> list) {
+        if (list == null || list.isEmpty()) {
+            return ResponseEntity.badRequest().body("스케줄 데이터가 없습니다");
+        }
+        List<ScheduleViewInfo> resultList = new ArrayList<>();
+        for (ScheduleViewInfo dto : list) {
+            int userNumber = viewRepository.findByUserName(dto.getUserName());
+            if (userNumber == -1) {
+                return getStringResponseEntity();
+            }
+            ScheduleViewInfo entity = new ScheduleViewInfo();
+            entity.setUserNumber(userNumber);
+            entity.setUserName(dto.getUserName());
+            entity.setApplyDate(dto.getApplyDate());
+            entity.setStartTime(dto.getStartTime());
+            entity.setEndTime(dto.getEndTime());
+            entity.setPosition(dto.getPosition());
+            resultList.add(entity);
+        }
+        viewRepository.saveAll(resultList);
+        return ResponseEntity.ok("스케줄이 정상적으로 저장되었습니다.");
+    }
+
+    @NotNull
+    private static ResponseEntity<String> getStringResponseEntity() {
+        return ResponseEntity.badRequest().body("사용자를 찾을 수 없습니다.");
+    }
+
 }
