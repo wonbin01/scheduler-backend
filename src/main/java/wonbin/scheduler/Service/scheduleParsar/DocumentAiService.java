@@ -48,7 +48,6 @@ public class DocumentAiService {
             ProcessResponse response = client.processDocument(request);
             Document doc = response.getDocument();
             String result = callGEMINI(doc.getText(), file);
-            System.out.println(doc.getText());
             return result;
         }
     }
@@ -56,13 +55,32 @@ public class DocumentAiService {
     private String callGEMINI(String info, MultipartFile file) {
         Client client = Client.builder().apiKey(apiKey).build();
         String req = String.format(
-                "첨부된 근무 스케줄표 이미지와 추가 정보를 분석하여, " + "각 직원의 이름, 날짜, 출근시간, 퇴근시간을 추출한 후, " + "이 결과를 JSON 배열 형식으로만 응답해 주세요."
-                        + "JSON 배열은 반드시 날짜 오름차순(목요일, 금요일, 토요일...)으로 정렬해 주세요. 예를 들어, 목요일 근무자 데이터를 모두 나열한 뒤 금요일 근무자 데이터를 나열해야 합니다."
-                        + "직원 이름에 해당하는 근무 시간이 정확히 어떤 날짜 컬럼 아래에 위치하는지 수직적으로 꼼꼼하게 확인한 후 해당 날짜로 매핑해야 합니다."
-                        + "json으로 반환할때, 포지션 부분은 빈칸으로 반환하세요"
-                        + "이름은 추가 정보에 들어있는 이름만 사용하세요."
-                        + "추가 정보 : %s", info
+                """
+                        첨부된 근무 스케줄표 이미지와 추가 정보를 분석하여, 각 직원의 이름, 날짜, 출근시간, 퇴근시간을 추출한 후,
+                        이 결과를 JSON 배열 형식으로만 응답해 주세요.
+                        
+                        JSON 배열은 반드시 날짜 오름차순(목요일, 금요일, 토요일...)으로 정렬해 주세요.
+                        예를 들어, 목요일 근무자 데이터를 모두 나열한 뒤 금요일 근무자 데이터를 나열해야 합니다.
+                        
+                        직원 이름에 해당하는 근무 시간이 정확히 어떤 날짜 컬럼 아래에 위치하는지 수직적으로 꼼꼼하게 확인한 후 해당 날짜로 매핑해야 합니다.
+                        
+                        JSON으로 반환할 때, "포지션" 부분은 빈 문자열("")로 두세요.
+                        이름은 반드시 추가 정보에 들어있는 이름만 사용하세요.
+                        
+                        JSON 객체의 형태 예시는 다음과 같습니다:
+                        {
+                            "userName": "이하정",
+                            "applyDate": "11/06(목)",
+                            "startTime": "16:00",
+                            "endTime": "22:30",
+                            "position": ""
+                        }
+                        
+                        추가 정보: %s
+                        """,
+                info
         );
+
         try {
             byte[] bytes = file.getBytes();
             String mimeType = file.getContentType();
