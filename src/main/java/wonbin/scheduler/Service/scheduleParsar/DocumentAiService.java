@@ -1,7 +1,12 @@
 package wonbin.scheduler.Service.scheduleParsar;
 
 import com.google.cloud.documentai.v1.Document;
+import com.google.cloud.documentai.v1.Document.Page;
+import com.google.cloud.documentai.v1.Document.Page.Table;
+import com.google.cloud.documentai.v1.Document.Page.Table.TableCell;
+import com.google.cloud.documentai.v1.Document.Page.Table.TableRow;
 import com.google.cloud.documentai.v1.DocumentProcessorServiceClient;
+import com.google.cloud.documentai.v1.NormalizedVertex;
 import com.google.cloud.documentai.v1.ProcessRequest;
 import com.google.cloud.documentai.v1.ProcessResponse;
 import com.google.cloud.documentai.v1.RawDocument;
@@ -11,12 +16,16 @@ import com.google.genai.types.GenerateContentResponse;
 import com.google.genai.types.Part;
 import com.google.protobuf.ByteString;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import wonbin.scheduler.Entity.CellInfo;
 
 @Service
+@Slf4j
 public class DocumentAiService {
     @Value("${gcp.project.id}")
     private String projectId;
@@ -47,8 +56,39 @@ public class DocumentAiService {
 
             ProcessResponse response = client.processDocument(request);
             Document doc = response.getDocument();
-            String result = callGEMINI(doc.getText(), file);
-            return result;
+            List<CellInfo> cellInfos = extractCellsWithText(doc);
+            log.info(cellInfos.toString());
+            return callGEMINI(doc.getText(), file);
+        }
+    }
+
+    private List<CellInfo> extractCellsWithText(Document document) {
+        List<CellInfo> cells = new ArrayList<>();
+        for (Page page : document.getPagesList()) {
+            for (Table table : page.getTablesList()) {
+                getBodyInfo(table.getBodyRowsList(), document, cells);
+                getBodyInfo(table.getHeaderRowsList(), document, cells);
+            }
+        }
+        return cells;
+    }
+
+    private static void getBodyInfo(List<TableRow> table, Document document, List<CellInfo> cells) {
+        for (TableRow row : table) {
+            for (TableCell cell : row.getCellsList()) {
+                if (cell.hasLayout()) {
+                    StringBuilder cellText = new StringBuilder();
+                    for (Document.TextAnchor.TextSegment segment : cell.getLayout().getTextAnchor()
+                            .getTextSegmentsList()) {
+                        int start = (int) segment.getStartIndex();
+                        int end = (int) segment.getEndIndex();
+                        cellText.append(document.getText().substring(start, end));
+                    }
+                    List<NormalizedVertex> normalizedVerticesList = cell.getLayout().getBoundingPoly()
+                            .getNormalizedVerticesList();
+                    cells.add(new CellInfo(cellText.toString(), normalizedVerticesList));
+                }
+            }
         }
     }
 
