@@ -1,5 +1,6 @@
 package wonbin.scheduler.Service.scheduleParsar;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.documentai.v1.Document;
 import com.google.cloud.documentai.v1.Document.Page;
 import com.google.cloud.documentai.v1.Document.Page.Table;
@@ -15,14 +16,27 @@ import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentResponse;
 import com.google.genai.types.Part;
 import com.google.protobuf.ByteString;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import wonbin.scheduler.Entity.CellInfo;
+import wonbin.scheduler.dto.CellDto;
 
 @Service
 @Slf4j
@@ -35,6 +49,9 @@ public class DocumentAiService {
     private String location;
     @Value("${gcp.GEMINI_API_KEY}")
     private String apiKey;
+
+    static List<CellInfo> cells = new ArrayList<>();
+    private final String colorExtractorUrl = "http://color-extractor-container:8001/extract/colorInfo";
 
     public String extractSchedule(MultipartFile file) throws IOException {
         try (DocumentProcessorServiceClient client = DocumentProcessorServiceClient.create()) {
@@ -57,23 +74,75 @@ public class DocumentAiService {
             ProcessResponse response = client.processDocument(request);
             Document doc = response.getDocument();
             List<CellInfo> cellInfos = extractCellsWithText(doc);
-            log.info(cellInfos.toString());
-            return callGEMINI(doc.getText(), file);
+            int[] dimensionInfo = extractDimensinos(file);
+            CellDto cellDto = new CellDto();
+            cellDto.setImageWidth(dimensionInfo[0]);
+            cellDto.setImageHeight(dimensionInfo[1]);
+            cellDto.setCells(cellInfos);
+            String resColorInfo = sendCellDto(cellDto, file);
+
+            String s = callGEMINI(cellDto, file, resColorInfo);
+            System.out.println(s);
+            return s;
         }
     }
 
+    public String sendCellDto(CellDto cellDto, MultipartFile file) throws IOException {
+        RestTemplate restTemplate = new RestTemplate();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        System.out.println(cellDto);
+
+        String cellDtoJson = objectMapper.writeValueAsString(cellDto);
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("document_data_json", cellDtoJson); // JSON DTO
+        body.add("image_file", new InputStreamResource(file.getInputStream()) {
+            @Override
+            public String getFilename() {
+                return file.getOriginalFilename(); // 파일 이름 유지
+            }
+        });
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+        log.info("Dto Json: {}", cellDtoJson);
+        log.info("File name : {}", file.getOriginalFilename());
+
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(colorExtractorUrl, requestEntity,
+                    String.class);
+            System.out.println("Response status: " + response.getStatusCode());
+            return response.getBody();
+        } catch (HttpClientErrorException | HttpServerErrorException ex) {
+            System.err.println("Error response: " + ex.getResponseBodyAsString());
+            throw ex;
+        }
+    }
+
+    public int[] extractDimensinos(MultipartFile file) throws IOException {
+        BufferedImage image = ImageIO.read(file.getInputStream());
+        if (image != null) {
+            int height = image.getHeight();
+            int width = image.getWidth();
+            return new int[]{width, height};
+        }
+        return new int[]{0, 0};
+    }
+
     private List<CellInfo> extractCellsWithText(Document document) {
-        List<CellInfo> cells = new ArrayList<>();
+        int idCounter = 0;
         for (Page page : document.getPagesList()) {
             for (Table table : page.getTablesList()) {
-                getBodyInfo(table.getBodyRowsList(), document, cells);
-                getBodyInfo(table.getHeaderRowsList(), document, cells);
+                idCounter = getBodyInfo(table.getBodyRowsList(), document, cells, idCounter);
+                idCounter = getBodyInfo(table.getHeaderRowsList(), document, cells, idCounter);
             }
         }
         return cells;
     }
 
-    private static void getBodyInfo(List<TableRow> table, Document document, List<CellInfo> cells) {
+    private int getBodyInfo(List<TableRow> table, Document document, List<CellInfo> cells, int cellId) {
+
         for (TableRow row : table) {
             for (TableCell cell : row.getCellsList()) {
                 if (cell.hasLayout()) {
@@ -84,15 +153,24 @@ public class DocumentAiService {
                         int end = (int) segment.getEndIndex();
                         cellText.append(document.getText().substring(start, end));
                     }
+                    String finalCellText = cellText.toString();
+                    if (finalCellText.trim().isEmpty()) {
+                        continue;
+                    }
+
                     List<NormalizedVertex> normalizedVerticesList = cell.getLayout().getBoundingPoly()
                             .getNormalizedVerticesList();
-                    cells.add(new CellInfo(cellText.toString(), normalizedVerticesList));
+
+                    // CellInfo 객체 생성 시 변환 메서드 사용
+                    cells.add(CellInfo.fromNormalizedVertices(cellId++, finalCellText, normalizedVerticesList));
                 }
             }
         }
+        return cellId;
     }
 
-    private String callGEMINI(String info, MultipartFile file) {
+
+    private String callGEMINI(CellDto cellDto, MultipartFile file, String colorInfo) {
         Client client = Client.builder().apiKey(apiKey).build();
         String req = String.format(
                 """
@@ -113,12 +191,13 @@ public class DocumentAiService {
                             "applyDate": "11/06(목)",
                             "startTime": "16:00",
                             "endTime": "22:30",
-                            "position": ""
+                            "position": "매점"
                         }
                         
-                        추가 정보: %s
+                        추가 정보1: %s,
+                        추가 정보2: %s
                         """,
-                info
+                cellDto, colorInfo
         );
 
         try {
