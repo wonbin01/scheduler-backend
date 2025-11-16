@@ -23,7 +23,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -90,18 +90,18 @@ public class DocumentAiService {
     public String sendCellDto(CellDto cellDto, MultipartFile file) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper objectMapper = new ObjectMapper();
-
-        System.out.println(cellDto);
-
         String cellDtoJson = objectMapper.writeValueAsString(cellDto);
+
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("document_data_json", cellDtoJson); // JSON DTO
-        body.add("image_file", new InputStreamResource(file.getInputStream()) {
+        ByteArrayResource fileResource = new ByteArrayResource(file.getBytes()) {
             @Override
             public String getFilename() {
-                return file.getOriginalFilename(); // 파일 이름 유지
+                return file.getOriginalFilename();
             }
-        });
+        };
+        body.add("image_file", fileResource);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
@@ -181,8 +181,6 @@ public class DocumentAiService {
                         예를 들어, 목요일 근무자 데이터를 모두 나열한 뒤 금요일 근무자 데이터를 나열해야 합니다.
                         
                         직원 이름에 해당하는 근무 시간이 정확히 어떤 날짜 컬럼 아래에 위치하는지 수직적으로 꼼꼼하게 확인한 후 해당 날짜로 매핑해야 합니다.
-                        
-                        JSON으로 반환할 때, "포지션" 부분은 빈 문자열("")로 두세요.
                         이름은 반드시 추가 정보에 들어있는 이름만 사용하세요.
                         
                         JSON 객체의 형태 예시는 다음과 같습니다:
