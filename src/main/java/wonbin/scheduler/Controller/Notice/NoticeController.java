@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wonbin.scheduler.Entity.Post.PostInfo;
-import wonbin.scheduler.Repository.Category.CategoryRepository;
-import wonbin.scheduler.Repository.PostNotice.PostRepository;
 import wonbin.scheduler.Service.notice.NoticeService;
 
 @Slf4j
@@ -25,8 +23,6 @@ import wonbin.scheduler.Service.notice.NoticeService;
 @RequestMapping("/api/notice")
 public class NoticeController {
 
-    private final CategoryRepository categoryRepository;
-    private final PostRepository postRepository;
     private final NoticeService noticeService;
 
     @GetMapping
