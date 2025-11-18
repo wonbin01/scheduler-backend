@@ -14,15 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wonbin.scheduler.Entity.Comment.CommentInfo;
-import wonbin.scheduler.Repository.Comment.CommentRepositoy;
 import wonbin.scheduler.Service.comment.CommentService;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/notice")
 public class CommentController {
-    @Autowired
-    CommentRepositoy commentRepositoy;
     @Autowired
     CommentService commentService;
 
