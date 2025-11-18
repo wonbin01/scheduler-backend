@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wonbin.scheduler.Entity.Schedule.ScheduleApplyInfo;
-import wonbin.scheduler.Service.scheduleapply.ScheduleApplyService;
+import wonbin.scheduler.Service.schedule.ScheduleApplyService;
 
 @Slf4j
 @RestController
@@ -22,7 +22,7 @@ import wonbin.scheduler.Service.scheduleapply.ScheduleApplyService;
 @RequestMapping("/api")
 public class ScheduleApplyController {
     private final ScheduleApplyService scheduleApplyService;
-    
+
     @GetMapping("/scheduleApplyPage")
     public ResponseEntity<?> checkSession(HttpSession session) { /// 로그인 여부 및 로그인 정보 받아옴
         return scheduleApplyService.checkSession(session);

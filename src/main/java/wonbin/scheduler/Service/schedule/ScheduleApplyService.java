@@ -1,4 +1,4 @@
-package wonbin.scheduler.Service.scheduleapply;
+package wonbin.scheduler.Service.schedule;
 
 import jakarta.servlet.http.HttpSession;
 import java.util.Collections;

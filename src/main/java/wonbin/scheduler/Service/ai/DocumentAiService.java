@@ -1,4 +1,4 @@
-package wonbin.scheduler.Service.scheduleParsar;
+package wonbin.scheduler.Service.ai;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.documentai.v1.Document;
@@ -11,16 +11,13 @@ import com.google.cloud.documentai.v1.NormalizedVertex;
 import com.google.cloud.documentai.v1.ProcessRequest;
 import com.google.cloud.documentai.v1.ProcessResponse;
 import com.google.cloud.documentai.v1.RawDocument;
-import com.google.genai.Client;
-import com.google.genai.types.Content;
-import com.google.genai.types.GenerateContentResponse;
-import com.google.genai.types.Part;
 import com.google.protobuf.ByteString;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -42,6 +39,7 @@ import wonbin.scheduler.dto.CellDto;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class DocumentAiService {
     @Value("${gcp.project.id}")
     private String projectId;
@@ -49,9 +47,8 @@ public class DocumentAiService {
     private String processorId; // Form Parser ID
     @Value("${gcp.documentai.processor.location}")
     private String location;
-    @Value("${gcp.GEMINI_API_KEY}")
-    private String apiKey;
 
+    private final GeminiService geminiService;
     static List<CellInfo> cells = new ArrayList<>();
 
     //각 셀의 텍스트와 색상을 추출하고 이를 LLM에게 보내, json 형식으로 return
@@ -69,7 +66,7 @@ public class DocumentAiService {
             CellDto cellDto = getCellDto(dimensionInfo, cellInfos);
 
             String resColorInfo = sendCellDto(cellDto, file);
-            return callGEMINI(cellDto, file, resColorInfo);
+            return geminiService.callGEMINI(cellDto, file, resColorInfo);
         }
     }
 
@@ -199,62 +196,6 @@ public class DocumentAiService {
             cells.add(CellInfo.fromNormalizedVertices(cellId++, finalCellText, normalizedVerticesList));
         }
         return cellId;
-    }
-
-    private String callGEMINI(CellDto cellDto, MultipartFile file, String colorInfo) {
-        Client client = Client.builder().apiKey(apiKey).build();
-        String req = String.format(
-                """
-                        첨부된 근무 스케줄표 이미지와 추가 정보를 분석하여, 각 직원의 이름, 날짜, 출근시간, 퇴근시간을 추출한 후,
-                        이 결과를 JSON 배열 형식으로만 응답해 주세요.
-                        
-                        JSON 배열은 반드시 날짜 오름차순(목요일, 금요일, 토요일...)으로 정렬해 주세요.
-                        예를 들어, 목요일 근무자 데이터를 모두 나열한 뒤 금요일 근무자 데이터를 나열해야 합니다.
-                        
-                        직원 이름에 해당하는 근무 시간이 정확히 어떤 날짜 컬럼 아래에 위치하는지 수직적으로 꼼꼼하게 확인한 후 해당 날짜로 매핑해야 합니다.
-                        이름은 반드시 추가 정보에 들어있는 이름만 사용하세요.
-                        
-                        추가 정보2에 들어있는 정보를 활용하여, 스케줄과 포지션을 매칭해 주세요.
-                        
-                        JSON 객체의 형태 예시는 다음과 같습니다:
-                        {
-                            "userName": "이하정",
-                            "applyDate": "11/06(목)",
-                            "startTime": "16:00",
-                            "endTime": "22:30",
-                            "position": "매점"
-                        }
-                        
-                        추가 정보1: %s,
-                        추가 정보2: %s
-                        """,
-                cellDto, colorInfo
-        );
-
-        try {
-            byte[] bytes = file.getBytes();
-            String mimeType = file.getContentType();
-
-            Part imagePart = Part.fromBytes(bytes, mimeType);
-
-            Content content = Content.builder()
-                    .parts(List.of(
-                            imagePart,
-                            Part.fromText(req)
-                    ))
-                    .build();
-
-            GenerateContentResponse response = client.models.generateContent(
-                    "gemini-2.5-pro",
-                    content,
-                    null
-            );
-            return response.text();
-        } catch (IOException e) {
-            return "파일 처리 중 오류가 발생했습니다. : " + e.getMessage();
-        } catch (Exception e) {
-            return "Gemini API 호출 중 오류가 발생했습니다. : " + e.getMessage();
-        }
     }
 
 }
