@@ -48,18 +48,7 @@ public class CommentController {
     @DeleteMapping("/{category}/{id}/comments/{commentId}")
     public ResponseEntity<?> deleteComment(@PathVariable String category, @PathVariable long id,
                                            @PathVariable long commentId) {
-        List<CommentInfo> commentInfos = commentRepositoy.findby_Id(id); //게시글 찾기
-        if (commentInfos.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("게시글을 찾을 수 없습니다");
-        }
-        for (CommentInfo candidate : commentInfos) {
-            if (candidate.getComment_Id() == commentId) {
-                commentRepositoy.delete_comment(candidate);
-                log.info("댓글 삭제 왼료 commentId={}", commentId);
-                break;
-            }
-        }
-        return ResponseEntity.ok("댓글이 삭제되었습니다.");
+        return commentService.deleteComment(id, commentId);
     }
 
     @PutMapping("/{category}/{id}/comments/{commentId}")
