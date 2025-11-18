@@ -1,13 +1,18 @@
 package wonbin.scheduler.Service.notice;
 
+import jakarta.servlet.http.HttpSession;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import wonbin.scheduler.Entity.Member.MemberInfo;
 import wonbin.scheduler.Entity.Post.PostInfo;
 import wonbin.scheduler.Repository.Category.CategoryRepository;
 import wonbin.scheduler.Repository.PostNotice.PostRepository;
@@ -52,5 +57,42 @@ public class NoticeService {
         PostInfo savedPost = postRepository.save(post.getTitle(), post.getContent(), category);
         log.info("post 성공! : {}", category);
         return savedPost;
+    }
+
+    public ResponseEntity<?> getDetailedPost(long postId, HttpSession session) {
+        Optional<PostInfo> optionalPost = postRepository.findById(postId);
+        if (optionalPost.isEmpty()) {
+            log.info("해당 postId를 찾을 수 없습니다 : {}", postId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 게시글이 존재하지 않습니다");
+        }
+        PostInfo post = optionalPost.get();
+        MemberInfo loginMember = (MemberInfo) session.getAttribute("loginMember");
+        loginMember.setPassword("");
+        Map<String, Object> response = new HashMap<>();
+        response.put("post", post);
+        response.put("userInfo", loginMember);
+        return ResponseEntity.ok(response);
+    }
+
+    public ResponseEntity<?> deletePost(long postId) {
+        boolean deleted = postRepository.DeleteById(postId);
+        if (!deleted) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 게시글이 없습니다.");
+        }
+        log.info("삭제 성공");
+        return ResponseEntity.ok(String.format("삭제 성공 ID=%d", postId));
+    }
+
+    public void updatePost(String category, long postId, PostInfo update) {
+        Optional<PostInfo> optionalPost = postRepository.findById(postId);
+        if (optionalPost.isPresent()) {
+            PostInfo post = optionalPost.get();
+            post.setTitle(update.getTitle());
+            post.setContent(update.getContent());
+            post.setCategoryName(category);
+            postRepository.update(post);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "게시글을 찾을 수 없습니다.");
+        }
     }
 }
